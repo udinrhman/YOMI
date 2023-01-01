@@ -41,13 +41,13 @@ if (isset($_SESSION["username"])) {
         $ID = "";
         if (isset($_POST['Search'])) {
             $ID = $_POST['Search'];
-            $query2 = "SELECT * FROM mangaln WHERE LEVENSHTEIN_RATIO(title, '$ID') > 35 OR LEVENSHTEIN_RATIO(alternative_title, '$ID') > 35 OR title LIKE '%" . $ID . "%' OR alternative_title LIKE '%" . $ID . "%' ORDER BY mangaln_id DESC";
+            $query2 = "SELECT * FROM mangaln WHERE MATCH (title, alternative_title) AGAINST ('$ID')"; //have to add FULLTEXT index in sql - ALTER TABLE table_name ADD FULLTEXT index_name(column1, column2)
 
             $result2 = mysqli_query($link, $query2);
             $count = mysqli_num_rows($result2);
         } else {
             $ID = mysqli_real_escape_string($link, $_GET['ID']);
-            $query2 = "SELECT * FROM mangaln WHERE genre LIKE '%" . $ID . "%' ORDER BY mangaln_id DESC";
+            $query2 = "SELECT * FROM mangaln WHERE genre LIKE '%" . $ID . "%' ORDER BY title";
 
             $result2 = mysqli_query($link, $query2);
             $count = mysqli_num_rows($result2);
