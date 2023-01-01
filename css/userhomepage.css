@@ -1409,7 +1409,7 @@ input[type=checkbox] {
     -webkit-hyphens: auto;
     word-spacing: -0.05em;
 	/* ^is for justify text ... to make the justify texts not have too much spaces */
-	--max-lines: 4;
+	--max-lines: 3;
 	position: relative;
 	max-height: calc(var(--lh) * var(--max-lines));
 	overflow: hidden;

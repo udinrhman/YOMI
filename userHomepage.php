@@ -14,7 +14,7 @@ if (isset($_SESSION["username"])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js" integrity="sha512-53CQcu9ciJDlqhK7UD8dZZ+TF2PFGZrOngEYM/8qucuQba+a+BXOIRsp9PoMNJI3ZeLMVNIxIfZLbG/CdHI5PA==" crossorigin="anonymous"></script>
         <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js" data-auto-replace-svg="nest"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="css/userHomepage.css?v=1" rel="stylesheet">
+        <link href="css/userHomepage.css" rel="stylesheet">
     </head>
     <?php
     $host = "localhost";
@@ -161,6 +161,90 @@ if (isset($_SESSION["username"])) {
 
             <!-- Product Slider -->
             <div class="container-fluid" style="padding:0;padding-top:20px;padding-bottom:20px;">
+
+                <div class="product">
+                    <h2 class="product-category">POPULAR</h2>
+                    <button class="pre-btn"><img src="image/arrow.png" alt=""></button>
+                    <button class="nxt-btn"><img src="image/arrow.png" alt=""></button>
+                    <div class="product-container">
+                        <?php
+                        $queryPopular = "SELECT mangaln.*, SUM(orders.quantity) AS order_count
+                                        FROM mangaln LEFT JOIN orders 
+                                        ON mangaln.mangaln_id = orders.mangaln_id
+                                        GROUP BY mangaln.mangaln_id
+                                        ORDER BY order_count DESC LIMIT 15";
+                        $resultPopular = mysqli_query($link, $queryPopular);
+                        while ($popular = mysqli_fetch_array($resultPopular, MYSQLI_BOTH)) {
+                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $popular['mangaln_id'] . "'";
+                            $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
+                            $countVolume = mysqli_num_rows($resultStock);
+
+                            $stock = mysqli_fetch_array($resultStock, MYSQLI_BOTH);
+                        ?>
+                            <div class="product-card">
+
+                                <a href='productDetails.php?ID=<?php echo $popular['mangaln_id'] ?>'>
+                                    <div class="product-details">
+                                        <p style="font-size:16px;font-weight:500;color:#BF95FC;margin-bottom: 6px;"><?php echo $popular['title'] ?></p>
+                                        <p class="truncate-overflow"><?php echo $popular['synopsis'] ?></p>
+                                        <hr>
+                                        <p><span style="color:#949494">Alternative name: </span><?php echo $popular['alternative_title'] ?></p>
+                                        <p><span style="color:#949494">Type: </span><?php echo $popular['type'] ?></p>
+                                        <p><span style="color:#949494">Author: </span><?php echo $popular['author'] ?></p>
+                                        <p><span style="color:#949494">Total Volume: </span><?php echo $popular['total_volume'] ?></p>
+                                        <p><span style="color:#949494">Release Year: </span><?php echo $popular['release_year'] ?></p>
+                                        <p><span style="color:#949494">Status: </span><?php echo $popular['publication'] ?></p>
+                                        <p><span style="color:#949494">Genre: </span>
+                                            <?php
+                                            $mark = explode(",", $popular['genre']);
+                                            $numItems = count($mark);
+                                            $i = 0;
+                                            foreach ($mark as $genre) {
+                                                if (++$i === $numItems) { //if last element, no comma
+                                                    echo "<a class='product-genre' style='color:#BF95FC' href='search.php?ID=" . $genre . "'>" . $genre . "</a> ";       //link based on tags
+                                                } else {
+                                                    echo "<a class='product-genre' style='color:#BF95FC' href='search.php?ID=" . $genre . "'>" . $genre . ",</a> ";
+                                                }
+                                            }
+                                            ?>
+                                        </p>
+                                    </div>
+                                </a>
+                                <div class="product-image">
+                                    <a href="productDetails.php?ID=<?php echo $popular['mangaln_id'] ?>">
+                                        <img src="../YOMI/upload/<?php echo $popular['cover'] ?>" class="product-thumb" alt="">
+                                        <div class="type-wrapper">
+                                            <?php
+                                            if ($popular['type'] == 'Manga') {
+                                            ?>
+                                                <div class="type" style="background-color:#645CAA"><?php echo $popular['type'] ?></div>
+                                            <?php } else { ?>
+                                                <div class="type" style="background-color:#CA4E79"><?php echo $popular['type'] ?></div>
+                                            <?php } ?>
+                                        </div>
+                                        <span class="price-tag">RM<?php echo $popular['price'] ?></span>
+                                        <?php
+                                        if ($countVolume < 1 || $stock['stock'] < 1) { ?>
+                                            <!-- if no volume or all volume out of stock -->
+
+                                            <div class="status">
+                                                <p>SOLD OUT</p>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <a href="productDetails.php?ID=<?php echo $popular['mangaln_id'] ?>">
+                                        <p class="product-short-description text-truncate"><?php echo $popular['title'] ?></p>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php }
+                        ?>
+                    </div>
+                </div>
 
                 <div class="product">
                     <h2 class="product-category">LATEST UPDATE</h2>
@@ -347,8 +431,8 @@ if (isset($_SESSION["username"])) {
         </script>
         <script>
             var i = 1;
-            var last = document.querySelectorAll(".product-details");
-            while (i < 30) {
+            var last = document.querySelectorAll('.product-details');
+            while (i < 45) { //amount of products displayed (Popular, Latest Update & Recently Added with 15 product each)
                 last[last.length - i].style.left = '-70%'; //to change css of every 5 product starting from the last to first
                 i += 5;
             }
