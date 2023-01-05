@@ -29,7 +29,7 @@ if (isset($_SESSION["username"])) {
         $database = "yomi";
 
         $link = mysqli_connect($host, $userid, $password, $database);
-        include 'function/functions.php';
+        include 'function/timeAgo.php';
         $ID = mysqli_real_escape_string($link, $_GET['ID']);
 
         $query1 = "SELECT * FROM user where username = '" . $_SESSION["username"] . "'";

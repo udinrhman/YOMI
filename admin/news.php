@@ -48,7 +48,7 @@ if (isset($_SESSION["username"])) {
     $database = "yomi";
 
     $link = mysqli_connect($host, $userid, $password, $database);
-    include '../function/functions.php';
+    include '../function/timeAgo.php';
 
     $query1 = "SELECT * FROM user where username = '" . $_SESSION["username"] . "'";
     $result1 = mysqli_query($link, $query1);

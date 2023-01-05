@@ -1,5 +1,5 @@
 <?php
-include 'function/functions.php';
+include 'function/timeAgo.php';
 $host = "localhost";
 $userid = "root";
 $pass = "";
