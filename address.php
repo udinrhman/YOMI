@@ -232,7 +232,7 @@ if (isset($_SESSION["username"])) {
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Fullname :</label>
-                                                                <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" value="<?php echo $row2['fullname']; ?>" required>
+                                                                <input type="text" name="fullname" id="fullname" class="form-control fullname" maxlength="255" value="<?php echo $row2['fullname']; ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -240,30 +240,30 @@ if (isset($_SESSION["username"])) {
                                                                 <label>Phone Number :</label>
                                                                 <div id="input-wrapper">
                                                                     <label for="text">+60</label>
-                                                                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" value="<?php echo $row2['phone_number']; ?>" required>
+                                                                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control phoneNumber" minlength="8" maxlength="11" pattern="[0-9]+" value="<?php echo $row2['phone_number']; ?>" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Street :</label>
-                                                                <input type="text" name="street" id="street" class="form-control" maxlength="255" value="<?php echo $row2['street']; ?>" required>
+                                                                <input type="text" name="street" id="street" class="form-control street" maxlength="255" value="<?php echo $row2['street']; ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Floor Unit (Optional) :</label>
-                                                                <input type="text" name="floor_unit" id="floor_unit" class="form-control" maxlength="255" value="<?php echo $row2['floor_unit']; ?>">
+                                                                <input type="text" name="floor_unit" id="floor_unit" class="form-control floor_unit" maxlength="255" value="<?php echo $row2['floor_unit']; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Town / City :</label>
-                                                                <input type="text" name="town_city" id="town_city" class="form-control" maxlength="255" value="<?php echo $row2['town_city']; ?>" required>
+                                                                <input type="text" name="town_city" id="town_city" class="form-control town_city" maxlength="255" value="<?php echo $row2['town_city']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Postcode :</label>
-                                                                <input type="text" name="postcode" id="postcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required value="<?php echo $row2['postcode']; ?>">
+                                                                <input type="text" name="postcode" id="postcode" class="form-control postcode" minlength="5" maxlength="5" pattern="[0-9]+" required value="<?php echo $row2['postcode']; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -427,13 +427,13 @@ if (isset($_SESSION["username"])) {
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="updateAddress.php" method="POST" id="editAddress">
+                                            <form action="updateAddress.php" class="editAddressForm" method="POST" id="editAddress">
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Fullname :</label>
-                                                                <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" value="<?php echo $row3['fullname']; ?>" required>
+                                                                <input type="text" name="fullname" id="fullname<?php echo $row3['address_id']; ?>" class="form-control fullname" maxlength="255" value="<?php echo $row3['fullname']; ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -441,30 +441,30 @@ if (isset($_SESSION["username"])) {
                                                                 <label>Phone Number :</label>
                                                                 <div id="input-wrapper">
                                                                     <label for="text">+60</label>
-                                                                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" value="<?php echo $row3['phone_number']; ?>" required>
+                                                                    <input type="text" name="phoneNumber" id="phoneNumber<?php echo $row3['address_id']; ?>" class="form-control phoneNumber" minlength="8" maxlength="11" pattern="[0-9]+" value="<?php echo $row3['phone_number']; ?>" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Street :</label>
-                                                                <input type="text" name="street" id="street" class="form-control" maxlength="255" value="<?php echo $row3['street']; ?>" required>
+                                                                <input type="text" name="street" id="street<?php echo $row3['address_id']; ?>" class="form-control street" maxlength="255" value="<?php echo $row3['street']; ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Floor Unit (Optional) :</label>
-                                                                <input type="text" name="floor_unit" id="floor_unit" class="form-control" maxlength="255" value="<?php echo $row3['floor_unit']; ?>">
+                                                                <input type="text" name="floor_unit" id="floor_unit<?php echo $row3['address_id']; ?>" class="form-control floor_unit" maxlength="255" value="<?php echo $row3['floor_unit']; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Town / City :</label>
-                                                                <input type="text" name="town_city" id="town_city" class="form-control" maxlength="255" value="<?php echo $row3['town_city']; ?>" required>
+                                                                <input type="text" name="town_city" id="town_city<?php echo $row3['address_id']; ?>" class="form-control town_city" maxlength="255" value="<?php echo $row3['town_city']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Postcode :</label>
-                                                                <input type="text" name="postcode" id="postcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required value="<?php echo $row3['postcode']; ?>">
+                                                                <input type="text" name="postcode" id="postcode<?php echo $row3['address_id']; ?>" class="form-control postcode" minlength="5" maxlength="5" pattern="[0-9]+" required value="<?php echo $row3['postcode']; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -497,15 +497,32 @@ if (isset($_SESSION["username"])) {
 
                                                 <div class="modal-footer">
                                                     <span class="btn btn-secondary reset" id="reset" onClick="resetFields()">RESET</span>
-                                                    <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">EDIT</button>
+                                                    <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress<?php echo $row3['address_id']; ?>">EDIT</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        $('#fullname<?php echo $row3['address_id']; ?>,#phoneNumber<?php echo $row3['address_id']; ?>,#street<?php echo $row3['address_id']; ?>,#town_city<?php echo $row3['address_id']; ?>,#postcode<?php echo $row3['address_id']; ?>').on('keyup', function() {
+                                            var fullname_value = $("#fullname<?php echo $row3['address_id']; ?>").val();
+                                            var phoneNumber_value = $("#phoneNumber<?php echo $row3['address_id']; ?>").val();
+                                            var street_value = $("#street<?php echo $row3['address_id']; ?>").val();
+                                            var town_city = $("#town_city<?php echo $row3['address_id']; ?>").val();
+                                            var postcode_value = $("#postcode<?php echo $row3['address_id']; ?>").val();
+                                            if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
+                                                $('button.editAddress<?php echo $row3['address_id']; ?>').prop('disabled', true);
+                                            } else {
+                                                $('button.editAddress<?php echo $row3['address_id']; ?>').prop('disabled', false);
+                                            }
+                                        });
+
+                                    });
+                                </script>
+                                <script type="text/javascript">
                                     function resetFields() { //reset form without [input type=reset]
-                                        document.getElementById("editAddress").reset();
+                                        document.getElementByClassName("editAddressForm").reset();
                                     }
                                 </script>
                                 <script type="text/javascript">
@@ -542,7 +559,7 @@ if (isset($_SESSION["username"])) {
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Fullname :</label>
-                                                        <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="fullname" id="addfullname" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -550,30 +567,30 @@ if (isset($_SESSION["username"])) {
                                                         <label>Phone Number :</label>
                                                         <div id="input-wrapper">
                                                             <label for="text">+60</label>
-                                                            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" required>
+                                                            <input type="text" name="phoneNumber" id="addphoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Street :</label>
-                                                        <input type="text" name="street" id="street" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="street" id="addstreet" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Floor Unit (Optional) :</label>
-                                                        <input type="text" name="floor_unit" id="floor_unit" class="form-control" maxlength="255">
+                                                        <input type="text" name="floor_unit" id="addfloor_unit" class="form-control" maxlength="255">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Town / City :</label>
-                                                        <input type="text" name="town_city" id="town_city" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="town_city" id="addtown_city" class="form-control" maxlength="255" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Postcode :</label>
-                                                        <input type="text" name="postcode" id="postcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required>
+                                                        <input type="text" name="postcode" id="addpostcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -605,7 +622,7 @@ if (isset($_SESSION["username"])) {
 
                                         <div class="modal-footer">
                                             <button type="reset" class="btn btn-secondary reset">RESET</button>
-                                            <button type="submit" name="saveAddress" value="Submit" class="btn btn-primary saveAddress">ADD</button>
+                                            <button type="submit" name="saveAddress" value="Submit" class="btn btn-primary addsaveAddress">ADD</button>
                                         </div>
                                     </form>
                                 </div>
@@ -628,9 +645,9 @@ if (isset($_SESSION["username"])) {
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js" integrity="sha512-iceXjjbmB2rwoX93Ka6HAHP+B76IY1z0o3h+N1PeDtRSsyeetU3/0QKJqGyPJcX63zysNehggFwMC/bi7dvMig==" crossorigin="anonymous"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
-        
+
         <script>
-            $('form').attr('autocomplete','off'); //turn off autocomplete
+            $('form').attr('autocomplete', 'off'); //turn off autocomplete
         </script>
 
         <script>
@@ -644,7 +661,7 @@ if (isset($_SESSION["username"])) {
         </script>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function() { //for Edit Defaut Address Form
                 $('#fullname,#phoneNumber,#street,#town_city,#postcode').on('keyup', function() {
                     var fullname_value = $("#fullname").val();
                     var phoneNumber_value = $("#phoneNumber").val();
@@ -652,11 +669,27 @@ if (isset($_SESSION["username"])) {
                     var town_city = $("#town_city").val();
                     var postcode_value = $("#postcode").val();
                     if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
-                        $('button.saveAddress').prop('disabled', true); //disable button
                         $('button.editAddress').prop('disabled', true);
                     } else {
-                        $('button.saveAddress').prop('disabled', false);
                         $('button.editAddress').prop('disabled', false);
+                    }
+                });
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#addfullname,#addphoneNumber,#addstreet,#addtown_city,#addpostcode').on('keyup', function() { //for Add Address Form
+                    var fullname_value = $("#addfullname").val();
+                    var phoneNumber_value = $("#addphoneNumber").val();
+                    var street_value = $("#addstreet").val();
+                    var town_city = $("#addtown_city").val();
+                    var postcode_value = $("#addpostcode").val();
+                    if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
+                        $('button.addsaveAddress').prop('disabled', true); 
+                    } else {
+                        $('button.addsaveAddress').prop('disabled', false);
                     }
                 });
 
@@ -667,6 +700,7 @@ if (isset($_SESSION["username"])) {
             $(document).ready(function() {
                 $('.selectpicker').selectpicker();
                 $('.reset').click(function() {
+                    $('.editAddressForm').trigger("reset");
                     $(".selectpicker").val('default').selectpicker("refresh");
                 });
             });

@@ -459,7 +459,7 @@ if (isset($_SESSION["username"])) {
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Fullname :</label>
-                                                        <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="fullname" id="addfullname" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -467,35 +467,35 @@ if (isset($_SESSION["username"])) {
                                                         <label>Phone Number :</label>
                                                         <div id="input-wrapper">
                                                             <label for="text">+60</label>
-                                                            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" required>
+                                                            <input type="text" name="phoneNumber" id="addphoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Street :</label>
-                                                        <input type="text" name="street" id="street" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="street" id="addstreet" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Floor Unit (Optional) :</label>
-                                                        <input type="text" name="floor_unit" id="floor_unit" class="form-control" maxlength="255">
+                                                        <input type="text" name="floor_unit" id="addfloor_unit" class="form-control" maxlength="255">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Town / City :</label>
-                                                        <input type="text" name="town_city" id="town_city" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="town_city" id="addtown_city" class="form-control" maxlength="255" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Postcode :</label>
-                                                        <input type="text" name="postcode" id="postcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required>
+                                                        <input type="text" name="postcode" id="addpostcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <select name="state_region" id="states" class="selectpicker show-menu-arrow w-100" data-header="State / Region" title="State / Region" data-size="14" data-live-search="true" data-live-search-placeholder="Search" required>
+                                                        <select name="state_region" id="addstates" class="selectpicker show-menu-arrow w-100" data-header="State / Region" title="State / Region" data-size="14" data-live-search="true" data-live-search-placeholder="Search" required>
                                                             <option class="options" value="WP Kuala Lumpur">WP Kuala Lumpur</option>
                                                             <option class="options" value="WP Putrajaya">WP Putrajaya</option>
                                                             <option class="options" value="WP Labuan">WP Labuan</option>
@@ -544,7 +544,7 @@ if (isset($_SESSION["username"])) {
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Fullname :</label>
-                                                        <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="fullname" id="addfullname2" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -552,30 +552,30 @@ if (isset($_SESSION["username"])) {
                                                         <label>Phone Number :</label>
                                                         <div id="input-wrapper">
                                                             <label for="text">+60</label>
-                                                            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" required>
+                                                            <input type="text" name="phoneNumber" id="addphoneNumber2" class="form-control" minlength="8" maxlength="11" pattern="[0-9]+" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Street :</label>
-                                                        <input type="text" name="street" id="street" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="street" id="addstreet2" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Floor Unit (Optional) :</label>
-                                                        <input type="text" name="floor_unit" id="floor_unit" class="form-control" maxlength="255">
+                                                        <input type="text" name="floor_unit" id="addfloor_unit2" class="form-control" maxlength="255">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Town / City :</label>
-                                                        <input type="text" name="town_city" id="town_city" class="form-control" maxlength="255" required>
+                                                        <input type="text" name="town_city" id="addtown_city2" class="form-control" maxlength="255" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Postcode :</label>
-                                                        <input type="text" name="postcode" id="postcode" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required>
+                                                        <input type="text" name="postcode" id="addpostcode2" class="form-control" minlength="5" maxlength="5" pattern="[0-9]+" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -607,7 +607,7 @@ if (isset($_SESSION["username"])) {
 
                                         <div class="modal-footer">
                                             <button type="reset" class="btn btn-secondary reset">RESET</button>
-                                            <button type="submit" name="saveAddress" value="Submit" class="btn btn-primary saveAddress">ADD</button>
+                                            <button type="submit" name="saveAddress" value="Submit" class="btn btn-primary saveAddress2">ADD</button>
                                         </div>
                                     </form>
                                 </div>
@@ -994,6 +994,42 @@ if (isset($_SESSION["username"])) {
 
             <script type="text/javascript">
                 $(document).ready(function() {
+                    $('#addfullname,#addphoneNumber,#addstreet,#addtown_city,#addpostcode').on('keyup', function() {
+                        var fullname_value = $("#addfullname").val();
+                        var phoneNumber_value = $("#addphoneNumber").val();
+                        var street_value = $("#addstreet").val();
+                        var town_city = $("#addtown_city").val();
+                        var postcode_value = $("add#postcode").val();
+                        if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
+                            $('button.saveAddress').prop('disabled', true);
+                        } else {
+                            $('button.saveAddress').prop('disabled', false);
+                        }
+                    });
+
+                });
+            </script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#addfullname2,#addphoneNumber2,#addstreet2,#addtown_city2,#addpostcode2').on('keyup', function() {
+                        var fullname_value = $("#addfullname2").val();
+                        var phoneNumber_value = $("#addphoneNumber2").val();
+                        var street_value = $("#addstreet2").val();
+                        var town_city = $("#addtown_city2").val();
+                        var postcode_value = $("#addpostcode2").val();
+                        if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
+                            $('button.saveAddress2').prop('disabled', true);
+                        } else {
+                            $('button.saveAddress2').prop('disabled', false);
+                        }
+                    });
+
+                });
+            </script>+
+
+            <script type="text/javascript">
+                $(document).ready(function() {
                     $('#fullname,#phoneNumber,#street,#town_city,#postcode').on('keyup', function() {
                         var fullname_value = $("#fullname").val();
                         var phoneNumber_value = $("#phoneNumber").val();
@@ -1001,10 +1037,8 @@ if (isset($_SESSION["username"])) {
                         var town_city = $("#town_city").val();
                         var postcode_value = $("#postcode").val();
                         if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
-                            $('button.saveAddress').prop('disabled', true); //disable button
                             $('button.editAddress').prop('disabled', true);
                         } else {
-                            $('button.saveAddress').prop('disabled', false);
                             $('button.editAddress').prop('disabled', false);
                         }
                     });
