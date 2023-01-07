@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link href="css/bootstrap-select.min.css" rel="stylesheet">
-        <link href="css/productDetail.css?V=2" rel="stylesheet">
+        <link href="css/productDetail.css?v=1" rel="stylesheet">
 
     </head>
 
@@ -522,30 +522,85 @@ if (isset($_SESSION["username"])) {
                             </div>
                             <!----  Product Suggestion  ----->
                             <div class="col-sm-3">
-                                <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;height:100%;">
-                                    <div class="card tsmall">
-                                        <div class="card-body" style="padding:0">
-                                            <div class="card-header" style="background-color:#181818;border-bottom:2px solid #5A2E98">
-                                                <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5">YOU MIGHT LIKE</p>
-                                            </div>
-                                            <div class="container-fluid" style="padding:10px">
-                                                <div class="boxRow">
-                                                    <?php
-                                                    $queryRandomRc = "SELECT * FROM mangaln WHERE LEVENSHTEIN_RATIO(genre, '$row[genre]') > 45 AND mangaln_id != $row[mangaln_id] ORDER BY LEVENSHTEIN(genre, '$row[genre]') LIMIT 6 "; //to retrive random manga
-                                                    $resultRC = mysqli_query($link, $queryRandomRc) or die(mysqli_error($link));
-                                                    $x   = $resultRC->fetch_all(MYSQLI_ASSOC);
-                                                    foreach ($x as $rowRRC) {
-                                                    ?>
-
-                                                        <div class="boxColumn imagesmall">
-                                                            <a href='productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>'>
-                                                                <img src="upload/<?php echo $rowRRC['cover'] ?>">
-                                                            </a>
-                                                            <a href='productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>'>
-                                                                <div class="text-truncate"><?php echo $rowRRC['title'] ?></div>
-                                                            </a>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;height:100%;">
+                                            <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                                <div class="card-body" style="padding:0;background-color:transparent">
+                                                    <div class="card-header" style="background-color:transparent;padding:0px">
+                                                        <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">YOU MIGHT LIKE</p>
+                                                    </div>
+                                                    <div class="container-fluid" style="padding:0">
+                                                        <div class="boxRow">
+                                                            <?php
+                                                            $queryRandomRc = "SELECT * FROM mangaln WHERE LEVENSHTEIN_RATIO(genre, '$row[genre]') > 45 AND mangaln_id != $row[mangaln_id] ORDER BY LEVENSHTEIN(genre, '$row[genre]') LIMIT 5 "; //to retrive random manga
+                                                            $resultRC = mysqli_query($link, $queryRandomRc) or die(mysqli_error($link));
+                                                            $x   = $resultRC->fetch_all(MYSQLI_ASSOC);
+                                                            foreach ($x as $rowRRC) {
+                                                            ?>
+                                                                <a href="productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>">
+                                                                    <div class="row" style="border-radius:5px;background-color:#181818;margin:0px;margin-bottom:10px;margin-top:10px">
+                                                                        <div class="col-2" style="padding:0">
+                                                                            <div class="popular-frame">
+                                                                                <img src="../YOMI/upload/<?php echo $rowRRC['cover'] ?>" class="popular-cover">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col popular-col" style="padding-left:15px;">
+                                                                            <div class="popular-info">
+                                                                                <div class="popular-details">
+                                                                                    <span class="card-text" style="font-weight:600;"><?php echo $rowRRC['title'] ?></span>
+                                                                                    <p style="font-size:12px;margin-bottom:0px"><?php echo $rowRRC['alternative_title'] ?></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         </div>
-
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----  Popular Products  ----->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="container">
+                                            <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                                <div class="card-header" style="background-color:transparent;padding:0px">
+                                                    <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">POPULAR</p>
+                                                </div>
+                                                <div class="card-body" style="padding:0;background-color:transparent">
+                                                    <?php
+                                                    $queryPopular = "SELECT mangaln.*, SUM(orders.quantity) AS order_count
+                                                                    FROM mangaln LEFT JOIN orders 
+                                                                    ON mangaln.mangaln_id = orders.mangaln_id
+                                                                    GROUP BY mangaln.mangaln_id
+                                                                    ORDER BY order_count DESC LIMIT 5";
+                                                    $resultPopular = mysqli_query($link, $queryPopular);
+                                                    $popular   = $resultPopular->fetch_all(MYSQLI_ASSOC);
+                                                    foreach ($popular as $populars) {
+                                                    ?>
+                                                        <a href="productDetails.php?ID=<?php echo $populars['mangaln_id'] ?>">
+                                                            <div class="row" style="border-radius:5px;background-color:#181818;margin:0px;margin-bottom:10px;margin-top:10px">
+                                                                <div class="col-2" style="padding:0">
+                                                                    <div class="popular-frame">
+                                                                        <img src="../YOMI/upload/<?php echo $populars['cover'] ?>" class="popular-cover">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
+                                                                    <div class="popular-info">
+                                                                        <div class="popular-details">
+                                                                            <span class="card-text" style="font-weight:600;"><?php echo $populars['title'] ?></span>
+                                                                            <p style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
                                                     <?php
                                                     }
                                                     ?>

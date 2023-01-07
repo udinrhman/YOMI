@@ -248,62 +248,77 @@ if (isset($_SESSION["username"])) {
                     </div>
                     <!----  Top 3 Donators  ----->
                     <div class="col-sm-3">
-                        <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;">
-                            <div class="card" style="background-color:#181818;">
-                                <div class="card-header" style="background-color:#181818;border-bottom:2px solid #5A2E98">
-                                    <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5">TOP 3 DONATORS</p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;">
+                                    <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                        <div class="card-header" style="background-color:transparent;padding:0px">
+                                            <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">TOP 3 DONATORS</p>
+                                        </div>
+                                        <table class="table table-borderless" style="border-radius:5px">
+                                            <?php
+                                            $query2 = "SELECT *, SUM(yomi_tokens) as token_sum FROM donation GROUP BY username ORDER BY token_sum DESC LIMIT 3";
+                                            $result2 = mysqli_query($link, $query2);
+                                            while ($row2 = mysqli_fetch_array($result2, MYSQLI_BOTH)) {
+                                                $query3 = "SELECT * FROM user WHERE username = '$row2[username]'";
+                                                $result3 = mysqli_query($link, $query3);
+                                                while ($row3 = mysqli_fetch_array($result3, MYSQLI_BOTH)) { ?>
+                                                    <tr style='cursor: pointer;' onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
+                                                        <td style="padding:10px;padding-left:10px">
+                                                            <img src="<?php echo $row3['user_image'] ?>" class="rounded-circle" width="40" height="40" style="object-fit:cover;">
+                                                        </td>
+                                                        <td style="text-align:left;padding-left:0">
+                                                            <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['username'] ?>
+                                                            <p>
+                                                        </td>
+                                                        <td style="text-align:right;padding:10px">
+                                                            <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['token_sum'] ?> YOMI TOKENS</p>
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </table>
+                                    </div>
                                 </div>
-                                <table class="table table-borderless" style="border-radius:5px">
-                                    <?php
-                                    $query2 = "SELECT *, SUM(yomi_tokens) as token_sum FROM donation GROUP BY username ORDER BY token_sum DESC LIMIT 3";
-                                    $result2 = mysqli_query($link, $query2);
-                                    while ($row2 = mysqli_fetch_array($result2, MYSQLI_BOTH)) {
-                                        $query3 = "SELECT * FROM user WHERE username = '$row2[username]'";
-                                        $result3 = mysqli_query($link, $query3);
-                                        while ($row3 = mysqli_fetch_array($result3, MYSQLI_BOTH)) { ?>
-                                            <tr style='cursor: pointer;' onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
-                                                <td style="padding:10px;padding-left:10px">
-                                                    <img src="<?php echo $row3['user_image'] ?>" class="rounded-circle" width="40" height="40" style="object-fit:cover;">
-                                                </td>
-                                                <td style="text-align:left;padding-left:0">
-                                                    <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['username'] ?>
-                                                    <p>
-                                                </td>
-                                                <td style="text-align:right;padding:10px">
-                                                    <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['token_sum'] ?> YOMI TOKENS</p>
-                                                </td>
-                                            </tr>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </table>
                             </div>
                         </div>
-                        <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;height:100%;">
-                            <div class="card tsmall">
-                                <div class="card-body" style="padding:0">
-                                    <div class="card-header" style="background-color:#181818;border-bottom:2px solid #5A2E98">
-                                        <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5">RECENTLY ADDED</p>
-                                    </div>
-                                    <div class="container-fluid" style="padding:10px">
-                                        <div class="boxRow">
+                        <div class="row">
+                            <div class="col">
+                                <div class="container">
+                                    <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                        <div class="card-header" style="background-color:transparent;padding:0px">
+                                            <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">POPULAR</p>
+                                        </div>
+                                        <div class="card-body" style="padding:0;background-color:transparent">
                                             <?php
-                                            $queryRecent = "SELECT * FROM mangaln ORDER BY mangaln_id DESC LIMIT 6 "; //to retrive recent product
-                                            $resultRC = mysqli_query($link, $queryRecent) or die(mysqli_error($link));
-
-                                            while ($rowRRC = mysqli_fetch_array($resultRC, MYSQLI_BOTH)) {
+                                            $queryPopular = "SELECT mangaln.*, SUM(orders.quantity) AS order_count
+                                                                    FROM mangaln LEFT JOIN orders 
+                                                                    ON mangaln.mangaln_id = orders.mangaln_id
+                                                                    GROUP BY mangaln.mangaln_id
+                                                                    ORDER BY order_count DESC LIMIT 5";
+                                            $resultPopular = mysqli_query($link, $queryPopular);
+                                            $popular   = $resultPopular->fetch_all(MYSQLI_ASSOC);
+                                            foreach ($popular as $populars) {
                                             ?>
-
-                                                <div class="boxColumn imagesmall">
-                                                    <a href='productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>'>
-                                                        <img src="upload/<?php echo $rowRRC['cover'] ?>">
-                                                    </a>
-                                                    <a href='productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>'>
-                                                        <div class="text-truncate"><?php echo $rowRRC['title'] ?></div>
-                                                    </a>
-                                                </div>
-
+                                                <a href="productDetails.php?ID=<?php echo $populars['mangaln_id'] ?>">
+                                                    <div class="row" style="border-radius:5px;background-color:#181818;margin:0px;margin-bottom:10px;margin-top:10px">
+                                                        <div class="col-2" style="padding:0">
+                                                            <div class="popular-frame">
+                                                                <img src="../YOMI/upload/<?php echo $populars['cover'] ?>" class="popular-cover">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
+                                                            <div class="popular-info">
+                                                                <div class="popular-details">
+                                                                    <span class="card-text" style="font-weight:600;"><?php echo $populars['title'] ?></span>
+                                                                    <p style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             <?php
                                             }
                                             ?>
@@ -312,68 +327,109 @@ if (isset($_SESSION["username"])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="container">
+                                    <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                        <div class="card-header" style="background-color:transparent;padding:0px">
+                                            <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">RECENTLY ADDED</p>
+                                        </div>
+                                        <div class="card-body" style="padding:0;background-color:transparent">
+                                            <?php
+                                            $queryRecent = "SELECT * FROM mangaln ORDER BY mangaln_id DESC LIMIT 5";
+                                            $resultRecent = mysqli_query($link, $queryRecent);
+                                            $recent   = $resultRecent->fetch_all(MYSQLI_ASSOC);
+                                            foreach ($recent as $recents) {
+                                            ?>
+                                                <a href="productDetails.php?ID=<?php echo $recents['mangaln_id'] ?>">
+                                                    <div class="row" style="border-radius:5px;background-color:#181818;margin:0px;margin-bottom:10px;margin-top:10px">
+                                                        <div class="col-2" style="padding:0">
+                                                            <div class="popular-frame">
+                                                                <img src="../YOMI/upload/<?php echo $recents['cover'] ?>" class="popular-cover">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
+                                                            <div class="popular-info">
+                                                                <div class="popular-details">
+                                                                    <span class="card-text" style="font-weight:600;"><?php echo $recents['title'] ?></span>
+                                                                    <p style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <!--Scripts -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js" integrity="sha512-iceXjjbmB2rwoX93Ka6HAHP+B76IY1z0o3h+N1PeDtRSsyeetU3/0QKJqGyPJcX63zysNehggFwMC/bi7dvMig==" crossorigin="anonymous"></script>
+            </div>
+            <!--Scripts -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js" integrity="sha512-iceXjjbmB2rwoX93Ka6HAHP+B76IY1z0o3h+N1PeDtRSsyeetU3/0QKJqGyPJcX63zysNehggFwMC/bi7dvMig==" crossorigin="anonymous"></script>
 
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
-                <script>
-                    $('form').attr('autocomplete', 'off'); //turn off autocomplete
-                </script>
-                <script>
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function() {
-                            var id = $(this).attr('id')
-                            return $('#po' + id).html();
-                        }
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
+            <script>
+                $('form').attr('autocomplete', 'off'); //turn off autocomplete
+            </script>
+            <script>
+                $('[data-toggle="popover"]').popover({
+                    html: true,
+                    content: function() {
+                        var id = $(this).attr('id')
+                        return $('#po' + id).html();
+                    }
+                });
+            </script>
+
+            <script type="application/javascript">
+                $('input[type="file"]').change(function(e) {
+                    var fileName = e.target.files[0].name;
+                    $('.custom-file-label').text(fileName);
+                });
+            </script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.reset').click(function() {
+                        document.getElementById("AddNewsForm").reset();
+                        $('.custom-file-label').text('Choose Image');
                     });
-                </script>
+                });
+            </script>
+            <script>
+                $(document).ready(function() {
+                    $(document).on('click', '#view_more', function(event) {
+                        event.preventDefault();
 
-                <script type="application/javascript">
-                    $('input[type="file"]').change(function(e) {
-                        var fileName = e.target.files[0].name;
-                        $('.custom-file-label').text(fileName);
-                    });
-                </script>
+                        var id = $('#view_more').data('id');
 
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('.reset').click(function() {
-                            document.getElementById("AddNewsForm").reset();
-                            $('.custom-file-label').text('Choose Image');
+                        $.ajax({
+                            url: "loadNews.php",
+                            type: "post",
+                            data: {
+                                id: id
+                            },
+                            success: function(response) {
+                                $('#remove_row').remove();
+                                $('.news').append(response);
+                            }
                         });
+
                     });
-                </script>
-                <script>
-                    $(document).ready(function() {
-                        $(document).on('click', '#view_more', function(event) {
-                            event.preventDefault();
+                });
+            </script>
+        <?php
 
-                            var id = $('#view_more').data('id');
+    }
 
-                            $.ajax({
-                                url: "loadNews.php",
-                                type: "post",
-                                data: {
-                                    id: id
-                                },
-                                success: function(response) {
-                                    $('#remove_row').remove();
-                                    $('.news').append(response);
-                                }
-                            });
-
-                        });
-                    });
-                </script>
-            <?php
-
-        }
-
-            ?>
+        ?>
         </body>
 
     </html>
