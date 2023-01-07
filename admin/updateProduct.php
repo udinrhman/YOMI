@@ -26,7 +26,7 @@ if (isset($_POST['updateProduct']) && $_POST['updateProduct'] == "Submit") {
     $publication = $_POST['publication'];
     $price = $_POST['price'];
     $admin_review = addslashes($_POST['admin_review']);
-
+    $admin_rating = $_POST['admin_rating'];
     date_default_timezone_set("Asia/Kuala_Lumpur");
 
     $checkCart = "SELECT * FROM cart WHERE mangaln_id = '$mangaln_id'";
@@ -40,13 +40,13 @@ if (isset($_POST['updateProduct']) && $_POST['updateProduct'] == "Submit") {
         }
         $query = "UPDATE mangaln SET title = '$title', alternative_title = '$alternative_title', type = '$type', 
         synopsis = '$synopsis', author = '$author', genre = '$genre', total_volume = '$total_volume', 
-        release_year = '$release_year', publication = '$publication', price = '$price', admin_review = '$admin_review',
+        release_year = '$release_year', publication = '$publication', price = '$price', admin_review = '$admin_review', admin_rating = '$admin_rating',
         mangaln_date = CURRENT_TIMESTAMP WHERE  mangaln_id = '$mangaln_id'";
         $result = mysqli_query($link, $query);
     } else { //update product only
         $query = "UPDATE mangaln SET title = '$title', alternative_title = '$alternative_title', type = '$type', 
         synopsis = '$synopsis', author = '$author', genre = '$genre', total_volume = '$total_volume', 
-        release_year = '$release_year', publication = '$publication', price = '$price', admin_review = '$admin_review',
+        release_year = '$release_year', publication = '$publication', price = '$price', admin_review = '$admin_review', admin_rating = '$admin_rating',
         mangaln_date = CURRENT_TIMESTAMP WHERE  mangaln_id = '$mangaln_id'";
         $result = mysqli_query($link, $query);
     }

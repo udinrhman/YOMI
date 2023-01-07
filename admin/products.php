@@ -14,7 +14,7 @@ if (isset($_SESSION["username"])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js" integrity="sha512-53CQcu9ciJDlqhK7UD8dZZ+TF2PFGZrOngEYM/8qucuQba+a+BXOIRsp9PoMNJI3ZeLMVNIxIfZLbG/CdHI5PA==" crossorigin="anonymous"></script>
         <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js" data-auto-replace-svg="nest"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="../css/admin.css?V=3" rel="stylesheet">
+        <link href="../css/admin.css" rel="stylesheet">
 
         <style>
             p {
@@ -280,7 +280,7 @@ if (isset($_SESSION["username"])) {
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label>Price :</label>
+                                                    <label>Price (RM):</label>
                                                     <input type="number" name="price" id="price" class="form-control" required>
                                                 </div>
                                             </div>
@@ -334,20 +334,39 @@ if (isset($_SESSION["username"])) {
                                                     </select>
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Synopsis :</label>
-                                                    <textarea name="synopsis" id="synopsis" class="form-control" rows="5" maxlength="2000" required></textarea>
+                                                    <textarea name="synopsis" id="synopsis" class="form-control" rows="6" maxlength="2000" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
+                                                <div class="row">
+                                                    <div class="col"><span style="color:#8FB2FF;font-weight:500;margin-bottom:0;margin-top:10px">Admin's Review :</span></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="rate">
+                                                            <input type="radio" id="star5" name="admin_rating" value="5" required/>
+                                                            <label for="star5" title="text">5 stars</label>
+                                                            <input type="radio" id="star4" name="admin_rating" value="4" />
+                                                            <label for="star4" title="text">4 stars</label>
+                                                            <input type="radio" id="star3" name="admin_rating" value="3" />
+                                                            <label for="star3" title="text">3 stars</label>
+                                                            <input type="radio" id="star2" name="admin_rating" value="2" />
+                                                            <label for="star2" title="text">2 stars</label>
+                                                            <input type="radio" id="star1" name="admin_rating" value="1" />
+                                                            <label for="star1" title="text">1 star</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
-                                                    <label>Admin's Review :</label>
-                                                    <textarea name="admin_review" id="admin_review" class="form-control" rows="5" maxlength="2000" required></textarea>
+                                                    <textarea name="admin_review" id="admin_review" class="form-control" rows="6" maxlength="2000" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -370,7 +389,7 @@ if (isset($_SESSION["username"])) {
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js" integrity="sha512-iceXjjbmB2rwoX93Ka6HAHP+B76IY1z0o3h+N1PeDtRSsyeetU3/0QKJqGyPJcX63zysNehggFwMC/bi7dvMig==" crossorigin="anonymous"></script>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
-            
+
             <script>
                 $('form').attr('autocomplete', 'off'); //turn off autocomplete
             </script>

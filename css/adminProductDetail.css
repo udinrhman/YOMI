@@ -260,6 +260,15 @@ table tr:last-child td:last-child {
 	margin-bottom: 5px;
 }
 
+.fa-star {
+	font-size: 20px;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.227);
+}
+
+.checked {
+	color: #FFC700;
+}
+
 .reject {
 	padding-right: 0px;
 	padding-left: 0px;
@@ -318,11 +327,12 @@ table tr:last-child td:last-child {
 	color: #F5F5F5 !important;
 	border: 1px solid #FF4040;
 }
+
 .delete {
 	font-size: 12px;
 	font-weight: 600;
 	color: #ff574d;
-	float:right;
+	float: right;
 	margin-top: 0px;
 	border: none;
 	background-color: transparent;
@@ -334,6 +344,7 @@ table tr:last-child td:last-child {
 .delete:hover {
 	color: #FF4040;
 }
+
 .fa-search {
 	color: rgb(129, 129, 129);
 }
@@ -1205,6 +1216,47 @@ input[type='number']:focus {
 
 textarea {
 	resize: none;
+}
+
+.rate {
+	float: left;
+	height: 40px;
+}
+
+.rate:not(:checked)>input {
+	position: absolute;
+	top: -9999px;
+}
+
+.rate:not(:checked)>label {
+	float: right;
+	width: 1em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 25px;
+	color: #ccc;
+}
+
+.rate:not(:checked)>label:before {
+	content: '★ ';
+}
+
+.rate>input:checked~label {
+	color: #FFC700;
+}
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+	color: #deb217;
+}
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+	color: #c59b08;
 }
 
 @media only screen and (max-width: 768px) {

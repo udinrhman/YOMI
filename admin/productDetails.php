@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="../css/adminProductDetail.css?V=1" rel="stylesheet">
+        <link href="../css/adminProductDetail.css" rel="stylesheet">
         <style>
             .stock th {
                 padding: 20px;
@@ -210,7 +210,24 @@ if (isset($_SESSION["username"])) {
                                             <p class="card-text"><?php echo nl2br($row['synopsis']); ?></p>
                                             <hr>
                                             <div class="review">
-                                                <h5 class="card-title" style="color:#c4cfff;text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.227)">Admin's Review</h5>
+                                                <h5 class="card-title" style="color:#c4cfff;text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.227);position:relative;display:inline-block;">Admin's Review</h5>&nbsp&nbsp
+                                                <?php
+                                                $fullstar = 5;
+                                                for ($star = 0; $star < $row['admin_rating']; $star++) {
+                                                ?>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <?php
+                                                }
+                                                if ($row['admin_rating'] != 5) {
+                                                    $blankstar = $fullstar - $row['admin_rating'];
+                                                    for ($star = 0; $star < $blankstar; $star++) {
+                                                    ?>
+                                                        <span class="fa fa-star"></span>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <br>
                                                 <span class="card-text more" style="color:#FFFFFF"><?php echo nl2br($row['admin_review']); ?></span><a class="readmore" style="color:#c4cfff;text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.227)">... read more</a>
                                             </div>
                                             <br>
@@ -571,9 +588,9 @@ if (isset($_SESSION["username"])) {
                                                         <div class="form-group select">
                                                             <label style="margin-bottom:0">Type :</label>
                                                             <select name="type" id="type" class="selectpicker w-100" data-none-selected-text="-- Select --" required>
-                                                                <option disabled selected> -- Select -- </option>
-                                                                <option class="options" value="Manga">Manga</option>
-                                                                <option class="options" value="Light Novel">Light Novel</option>
+                                                                <option disabled> -- Select -- </option>
+                                                                <option class="options"  value="Manga" <?php if($row['type'] == 'Manga'){echo "selected";}  ?>>Manga</option>
+                                                                <option class="options" value="Light Novel" <?php if($row['type'] == 'Light Novel') {echo "selected";} ?>>Light Novel</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -609,15 +626,33 @@ if (isset($_SESSION["username"])) {
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label>Synopsis :</label>
-                                                            <textarea name="synopsis" id="synopsis" class="form-control" rows="8" maxlength="2000" required><?php echo $row['synopsis'] ?></textarea>
+                                                            <textarea name="synopsis" id="synopsis" class="form-control" rows="6" maxlength="2000" required><?php echo $row['synopsis'] ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
+                                                        <div class="row">
+                                                            <div class="col"><span style="color:#8FB2FF;font-weight:500;margin-bottom:0;margin-top:10px">Admin's Review :</span></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="rate">
+                                                                    <input type="radio" id="star5" name="admin_rating" value="5" <?php if($row['admin_rating'] == '5'){echo "checked";} ?> required />
+                                                                    <label for="star5" title="text">5 stars</label>
+                                                                    <input type="radio" id="star4" name="admin_rating" value="4" <?php if($row['admin_rating'] == '4'){echo "checked";} ?> />
+                                                                    <label for="star4" title="text">4 stars</label>
+                                                                    <input type="radio" id="star3" name="admin_rating" value="3" <?php if($row['admin_rating'] == '3'){echo "checked";} ?> />
+                                                                    <label for="star3" title="text">3 stars</label>
+                                                                    <input type="radio" id="star2" name="admin_rating" value="2" <?php if($row['admin_rating'] == '2'){echo "checked";} ?> />
+                                                                    <label for="star2" title="text">2 stars</label>
+                                                                    <input type="radio" id="star1" name="admin_rating" value="1" <?php if($row['admin_rating'] == '1'){echo "checked";} ?> />
+                                                                    <label for="star1" title="text">1 star</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
-                                                            <label>Admin's Review :</label>
-                                                            <textarea name="admin_review" id="admin_review" class="form-control" rows="8" maxlength="2000" required><?php echo $row['admin_review'] ?></textarea>
+                                                            <textarea name="admin_review" id="admin_review" class="form-control" rows="6" maxlength="2000" required><?php echo $row['admin_review'] ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

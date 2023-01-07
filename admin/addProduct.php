@@ -27,12 +27,13 @@ if(isset($_POST['addProduct']) && $_POST['addProduct']=="Submit")
     $publication = $_POST['publication'];
     $synopsis = addslashes($_POST['synopsis']);
     $admin_review = addslashes($_POST['admin_review']);
+    $admin_rating = $_POST['admin_rating'];
     $type = $_POST['type'];
     $uploads_dir = '../upload/'; #directory path
     date_default_timezone_set("Asia/Kuala_Lumpur");
     
-    $query = "INSERT INTO mangaln (username,title,alternative_title,type,cover,synopsis,author,genre,total_volume,release_year,publication,price,admin_review,mangaln_date)
-    values ('".$username."','".$title."','".$alternative_title."','".$type."','".$image."','".$synopsis."','".$author."','".$genre."','".$total_volume."','".$release_year."','".$publication."','".$price."','".$admin_review."',CURRENT_TIMESTAMP)";
+    $query = "INSERT INTO mangaln (username,title,alternative_title,type,cover,synopsis,author,genre,total_volume,release_year,publication,price,admin_review,admin_rating,mangaln_date)
+    values ('".$username."','".$title."','".$alternative_title."','".$type."','".$image."','".$synopsis."','".$author."','".$genre."','".$total_volume."','".$release_year."','".$publication."','".$price."','".$admin_review."','".$admin_rating."',CURRENT_TIMESTAMP)";
     $result=mysqli_query($link,$query) or die(mysqli_error($link));
 
     if($result && move_uploaded_file($tname, $uploads_dir. $image)) #to move the uploaded file to specific location

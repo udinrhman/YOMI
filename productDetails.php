@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link href="css/bootstrap-select.min.css" rel="stylesheet">
-        <link href="css/productDetail.css" rel="stylesheet">
+        <link href="css/productDetail.css?V=2" rel="stylesheet">
 
     </head>
 
@@ -229,7 +229,24 @@ if (isset($_SESSION["username"])) {
                                                 <p class="card-text"><?php echo nl2br($row['synopsis']); ?></p>
                                                 <hr>
                                                 <div class="review">
-                                                    <h5 class="card-title">Admin's Review</h5>
+                                                    <h5 class="card-title" style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.227);position:relative;display:inline-block;">Admin's Review</h5>&nbsp&nbsp
+                                                    <?php
+                                                    $fullstar = 5;
+                                                    for ($star = 0; $star < $row['admin_rating']; $star++) {
+                                                    ?>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <?php
+                                                    }
+                                                    if ($row['admin_rating'] != 5) {
+                                                        $blankstar = $fullstar - $row['admin_rating'];
+                                                        for ($star = 0; $star < $blankstar; $star++) {
+                                                        ?>
+                                                            <span class="fa fa-star"></span>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                    <br>
                                                     <span class="card-text more"><?php echo nl2br($row['admin_review']); ?></span><a class="readmore">... read more</a>
                                                 </div>
                                                 <br>
