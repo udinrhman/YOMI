@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="../css/adminProductDetail.css" rel="stylesheet">
+        <link href="../css/adminProductDetail.css?V=1" rel="stylesheet">
         <style>
             .stock th {
                 padding: 20px;
@@ -137,7 +137,7 @@ if (isset($_SESSION["username"])) {
                                                 <?php
                                                 $mark = explode(",", $row['genre']); //remove "," from Tags table in database
                                                 foreach ($mark as $out) {
-                                                    echo "&nbsp<button class='btn-primary' style='border:none;min-width:80px;font-size:12px;padding:2px'><a href='search.php?ID=" . $out . "'> " . $out . "</a></button>";       //link based on tags
+                                                    echo "&nbsp<button class='btn-primary' style='border:none;min-width:80px;font-size:12px;padding:2px'>" . $out . "</button>";       //link based on tags
                                                 }
                                                 ?>
                                             </span>
@@ -589,8 +589,12 @@ if (isset($_SESSION["username"])) {
                                                             <label style="margin-bottom:0">Type :</label>
                                                             <select name="type" id="type" class="selectpicker w-100" data-none-selected-text="-- Select --" required>
                                                                 <option disabled> -- Select -- </option>
-                                                                <option class="options"  value="Manga" <?php if($row['type'] == 'Manga'){echo "selected";}  ?>>Manga</option>
-                                                                <option class="options" value="Light Novel" <?php if($row['type'] == 'Light Novel') {echo "selected";} ?>>Light Novel</option>
+                                                                <option class="options" value="Manga" <?php if ($row['type'] == 'Manga') {
+                                                                                                            echo "selected";
+                                                                                                        }  ?>>Manga</option>
+                                                                <option class="options" value="Light Novel" <?php if ($row['type'] == 'Light Novel') {
+                                                                                                                echo "selected";
+                                                                                                            } ?>>Light Novel</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -638,15 +642,25 @@ if (isset($_SESSION["username"])) {
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="rate">
-                                                                    <input type="radio" id="star5" name="admin_rating" value="5" <?php if($row['admin_rating'] == '5'){echo "checked";} ?> required />
+                                                                    <input type="radio" id="star5" name="admin_rating" value="5" <?php if ($row['admin_rating'] == '5') {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?> required />
                                                                     <label for="star5" title="text">5 stars</label>
-                                                                    <input type="radio" id="star4" name="admin_rating" value="4" <?php if($row['admin_rating'] == '4'){echo "checked";} ?> />
+                                                                    <input type="radio" id="star4" name="admin_rating" value="4" <?php if ($row['admin_rating'] == '4') {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?> />
                                                                     <label for="star4" title="text">4 stars</label>
-                                                                    <input type="radio" id="star3" name="admin_rating" value="3" <?php if($row['admin_rating'] == '3'){echo "checked";} ?> />
+                                                                    <input type="radio" id="star3" name="admin_rating" value="3" <?php if ($row['admin_rating'] == '3') {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?> />
                                                                     <label for="star3" title="text">3 stars</label>
-                                                                    <input type="radio" id="star2" name="admin_rating" value="2" <?php if($row['admin_rating'] == '2'){echo "checked";} ?> />
+                                                                    <input type="radio" id="star2" name="admin_rating" value="2" <?php if ($row['admin_rating'] == '2') {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?> />
                                                                     <label for="star2" title="text">2 stars</label>
-                                                                    <input type="radio" id="star1" name="admin_rating" value="1" <?php if($row['admin_rating'] == '1'){echo "checked";} ?> />
+                                                                    <input type="radio" id="star1" name="admin_rating" value="1" <?php if ($row['admin_rating'] == '1') {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?> />
                                                                     <label for="star1" title="text">1 star</label>
                                                                 </div>
                                                             </div>
@@ -667,66 +681,127 @@ if (isset($_SESSION["username"])) {
                                 </div>
                             </div>
 
-                            <!----  Product Suggestion  ----->
+                            <!----  Top 3 Donators  ----->
                             <div class="col-sm-3">
-                                <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;">
-                                    <table class="table table-borderless" id="top3" style="border-radius:5px">
-                                        <th colspan="3" style="text-align:left;font-size:20px;color:#8FB2FF;padding-left:20px">
-                                            TOP 3 DONATORS
-                                        </th>
-                                        <?php
-                                        $query2 = "SELECT *, SUM(yomi_tokens) as token_sum FROM donation GROUP BY username ORDER BY token_sum DESC LIMIT 3";
-                                        $result2 = mysqli_query($link, $query2);
-                                        while ($row2 = mysqli_fetch_array($result2, MYSQLI_BOTH)) {
-                                            $query3 = "SELECT * FROM user WHERE username = '$row2[username]'";
-                                            $result3 = mysqli_query($link, $query3);
-                                            while ($row3 = mysqli_fetch_array($result3, MYSQLI_BOTH)) { ?>
-                                                <tr onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
-                                                    <td style="padding:10px;padding-left:20px">
-                                                        <img src="../<?php echo $row3['user_image'] ?>" class="rounded-circle" width="40" height="40" style="object-fit:cover;">
-                                                    </td>
-                                                    <td style="text-align:left;padding-left:0">
-                                                        <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['username'] ?>
-                                                        <p>
-                                                    </td>
-                                                    <td style="text-align:right;padding:10px">
-                                                        <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['token_sum'] ?> YOMI TOKENS</p>
-                                                    </td>
-                                                </tr>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </table>
-                                </div>
-                                <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;height:100%;">
-                                    <div class="card tsmall">
-                                        <div class="card-body">
-                                            <h5 class="card-title">RECENTLY ADDED PRODUCTS</h5>
-                                            <div class="boxRow">
-                                                <?php
-                                                $queryRecent = "SELECT * FROM mangaln WHERE mangaln_id != '" . $ID . "' ORDER BY mangaln_id DESC LIMIT 6 "; //to retrive recent product
-                                                $resultRC = mysqli_query($link, $queryRecent) or die(mysqli_error($link));
-
-                                                while ($rowRRC = mysqli_fetch_array($resultRC, MYSQLI_BOTH)) {
-                                                ?>
-
-                                                    <div class="boxColumn imagesmall">
-                                                        <a href='productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>'>
-                                                            <img src="../upload/<?php echo $rowRRC['cover'] ?>">
-                                                        </a>
-                                                        <a href='productDetails.php?ID=<?php echo $rowRRC['mangaln_id'] ?>'>
-                                                            <div class="text-truncate"><?php echo $rowRRC['title'] ?></div>
-                                                        </a>
-                                                    </div>
-
-                                                <?php
-                                                }
-                                                ?>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;">
+                                            <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                                <div class="card-header" style="background-color:transparent;padding:0px">
+                                                    <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #777AFF">TOP 3 DONATORS</p>
+                                                </div>
+                                                <table class="table table-borderless" style="border-radius:5px">
+                                                    <?php
+                                                    $query2 = "SELECT *, SUM(yomi_tokens) as token_sum FROM donation GROUP BY username ORDER BY token_sum DESC LIMIT 3";
+                                                    $result2 = mysqli_query($link, $query2);
+                                                    while ($row2 = mysqli_fetch_array($result2, MYSQLI_BOTH)) {
+                                                        $query3 = "SELECT * FROM user WHERE username = '$row2[username]'";
+                                                        $result3 = mysqli_query($link, $query3);
+                                                        while ($row3 = mysqli_fetch_array($result3, MYSQLI_BOTH)) { ?>
+                                                            <tr style='cursor: pointer;' onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
+                                                                <td style="padding:10px;padding-left:10px">
+                                                                    <img src="../<?php echo $row3['user_image'] ?>" class="rounded-circle" width="40" height="40" style="object-fit:cover;">
+                                                                </td>
+                                                                <td style="text-align:left;padding-left:0">
+                                                                    <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['username'] ?>
+                                                                    <p>
+                                                                </td>
+                                                                <td style="text-align:right;padding:10px">
+                                                                    <p style="font-size:15px;font-weight:600;margin-top:10px"><?php echo $row2['token_sum'] ?> YOMI TOKENS</p>
+                                                                </td>
+                                                            </tr>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="container">
+                                            <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                                <div class="card-header" style="background-color:transparent;padding:0px">
+                                                    <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #777AFF">POPULAR</p>
+                                                </div>
+                                                <div class="card-body" style="padding:0;background-color:transparent">
+                                                    <?php
+                                                    $queryPopular = "SELECT mangaln.*, SUM(orders.quantity) AS order_count
+                                                                    FROM mangaln LEFT JOIN orders 
+                                                                    ON mangaln.mangaln_id = orders.mangaln_id
+                                                                    GROUP BY mangaln.mangaln_id
+                                                                    ORDER BY order_count DESC LIMIT 5";
+                                                    $resultPopular = mysqli_query($link, $queryPopular);
+                                                    $popular   = $resultPopular->fetch_all(MYSQLI_ASSOC);
+                                                    foreach ($popular as $populars) {
+                                                    ?>
+                                                        <a href="productDetails.php?ID=<?php echo $populars['mangaln_id'] ?>">
+                                                            <div class="row" style="border-radius:5px;background-color:#181818;margin:0px;margin-bottom:10px;margin-top:10px">
+                                                                <div class="col-2" style="padding:0">
+                                                                    <div class="popular-frame">
+                                                                        <img src="../../YOMI/upload/<?php echo $populars['cover'] ?>" class="popular-cover">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
+                                                                    <div class="popular-info">
+                                                                        <div class="popular-details">
+                                                                            <span class="card-text" style="font-weight:600;"><?php echo $populars['title'] ?></span>
+                                                                            <p style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="container">
+                                            <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                                <div class="card-header" style="background-color:transparent;padding:0px">
+                                                    <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #777AFF">RECENTLY ADDED</p>
+                                                </div>
+                                                <div class="card-body" style="padding:0;background-color:transparent">
+                                                    <?php
+                                                    $queryRecent = "SELECT * FROM mangaln ORDER BY mangaln_id DESC LIMIT 5";
+                                                    $resultRecent = mysqli_query($link, $queryRecent);
+                                                    $recent   = $resultRecent->fetch_all(MYSQLI_ASSOC);
+                                                    foreach ($recent as $recents) {
+                                                    ?>
+                                                        <a href="productDetails.php?ID=<?php echo $recents['mangaln_id'] ?>">
+                                                            <div class="row" style="border-radius:5px;background-color:#181818;margin:0px;margin-bottom:10px;margin-top:10px">
+                                                                <div class="col-2" style="padding:0">
+                                                                    <div class="popular-frame">
+                                                                        <img src="../../YOMI/upload/<?php echo $recents['cover'] ?>" class="popular-cover">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
+                                                                    <div class="popular-info">
+                                                                        <div class="popular-details">
+                                                                            <span class="card-text" style="font-weight:600;"><?php echo $recents['title'] ?></span>
+                                                                            <p style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <!--Scripts -->

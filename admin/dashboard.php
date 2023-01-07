@@ -206,7 +206,6 @@ if (isset($_SESSION["username"])) {
                                                     </tr>
 
                                                     <tr>
-                                                        <th> </th>
                                                         <th style="text-align:left;">PRODUCT</th>
                                                         <th>VOLUME</th>
                                                         <th>PRICE</th>
@@ -218,13 +217,8 @@ if (isset($_SESSION["username"])) {
                                                 }
                                                 ?>
                                                 <tr>
-                                                    <td style="width:100px;padding:15px;">
-                                                        <div class="container" style="width:100%;height:100%;">
-                                                            <div class="cover"><img width="100px" height="150px" src="../upload/<?php echo $row2['cover'] ?>" /></div>
-                                                        </div>
-                                                    </td>
                                                     <td class="title" style="text-align:left;">
-                                                        <p style="font-size:30px;font-weight:600;margin-bottom:0;"><?php echo $row2['title'] ?></p>
+                                                        <p style="font-size:20px;font-weight:600;margin-bottom:0;"><?php echo $row2['title'] ?></p>
                                                         <p><?php echo $row2['alternative_title'] ?></p>
                                                     </td>
                                                     <td style="width:10%">
@@ -243,19 +237,19 @@ if (isset($_SESSION["username"])) {
                                                 if (!empty($nextrows[$x])) {
                                                     if ($row2['order_num'] != $nextrows[$x]) { ?>
                                                         <tr style="border-top:1px solid #3b3b3b;font-weight:500">
-                                                            <td colspan="3" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
+                                                            <td colspan="2" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
                                                             <td colspan="2" style="text-align:right;padding:0;padding-top:20px;padding-right:3%">RM<?php echo $order_total ?></td>
                                                         </tr>
                                                         <tr style="font-weight:500">
-                                                            <td colspan="3" style="text-align:right;padding:0">Discount:</td>
+                                                            <td colspan="2" style="text-align:right;padding:0">Discount:</td>
                                                             <td colspan="2" style="text-align:right;padding:0;padding-right:3%">-RM<?php echo $row2['discount'] ?></td>
                                                         </tr>
                                                         <tr style="font-weight:500">
-                                                            <td colspan="3" style="text-align:right;padding:0">Total Payment:</td>
+                                                            <td colspan="2" style="text-align:right;padding:0">Total Payment:</td>
                                                             <td colspan="2" style="text-align:right;padding:0;padding-right:3%">RM<?php echo $total_payment ?></td>
                                                         </tr>
                                                         <tr style="font-weight:500">
-                                                            <td colspan="3" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
+                                                            <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
                                                             <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;padding-right:3%"><?php echo $row2['payment_method'] ?></td>
                                                         </tr>
                                                     <?php
@@ -264,19 +258,19 @@ if (isset($_SESSION["username"])) {
                                                 }
                                                 if (empty($nextrows[$x])) { ?>
                                                     <tr style="border-top:1px solid #3b3b3b;font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-top:20px;padding-right:3%">RM<?php echo $order_total ?></td>
                                                     </tr>
                                                     <tr style="font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0">Discount:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0">Discount:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-right:3%">-RM<?php echo $row2['discount'] ?></td>
                                                     </tr>
                                                     <tr style="font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0">Total Payment:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0">Total Payment:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-right:3%">RM<?php echo $total_payment ?></td>
                                                     </tr>
                                                     <tr style="font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;padding-right:3%"><?php echo $row2['payment_method'] ?></td>
                                                     </tr>
                                         <?php
@@ -324,7 +318,7 @@ if (isset($_SESSION["username"])) {
                                                 <?php
                                                 $mark = explode(",", $recent['genre']); //remove "," from Genre table in database
                                                 foreach ($mark as $out) {
-                                                    echo "&nbsp<button class='btn-primary' style='margin-top:5px;border:none'><a style='color:#F5F5F5;' href='search.php?ID=" . $out . "'> " . $out . "</a></button>";       //link based on tags
+                                                    echo "&nbsp<button class='btn-primary' style='margin-top:5px;border:none'>" . $out . "</button>";       //link based on tags
                                                 }
                                                 ?>
                                             </span>

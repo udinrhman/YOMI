@@ -729,7 +729,7 @@ if (isset($_SESSION["username"])) {
                                     $query7 = "SELECT * FROM stock WHERE mangaln_id = '" . $row6['mangaln_id'] . "' AND volume = '" . $row6['volume'] . "'";
                                     $result7 = mysqli_query($link, $query7);
                                     while ($row7 = mysqli_fetch_array($result7, MYSQLI_BOTH)) { ?>
-                                        <tr>
+                                        <tr style='cursor: pointer;' onclick="window.location='productDetails.php?ID=<?php echo $row6['mangaln_id'] ?>';">
                                             <td class="cartCover" style="width:6%;padding-top:25px">
                                                 <div style="display:flex;justify-content:center;">
                                                     <img src="upload/<?php echo $row6['cover'] ?>" />

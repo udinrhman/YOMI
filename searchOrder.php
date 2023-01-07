@@ -75,7 +75,7 @@ if (isset($_POST['keyword'])) {
                                 $currentDate = $row2['order_date'];
                             }
                             ?>
-                            <tr>
+                            <tr style='cursor: pointer;' onclick="window.location='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>';">
                                 <td style="width:2%;padding:15px;">
                                     <div class="container" style="width:100%;height:100%;">
                                         <div class="cover"><img width="100px" height="150px" src="upload/<?php echo $row2['cover'] ?>" /></div>

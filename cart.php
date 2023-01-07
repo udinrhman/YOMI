@@ -193,7 +193,7 @@ if (isset($_SESSION["username"])) {
                                             while ($row7 = mysqli_fetch_array($result7, MYSQLI_BOTH)) {
                                                 ${'subtotal' . $i} = $row6['price'] * $row6['quantity'];
                                                 ${'price' . $i} = $row6['price']; ?>
-                                                <tr>
+                                                <tr style='cursor: pointer;' onclick="window.location='productDetails.php?ID=<?php echo $row6['mangaln_id'] ?>';">
                                                     <td class="cartCover" style="width:6%;padding-top:25px">
                                                         <div style="display:flex;justify-content:center;">
                                                             <img src="upload/<?php echo $row6['cover'] ?>" />

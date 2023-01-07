@@ -14,7 +14,7 @@ if (isset($_SESSION["username"])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js" integrity="sha512-53CQcu9ciJDlqhK7UD8dZZ+TF2PFGZrOngEYM/8qucuQba+a+BXOIRsp9PoMNJI3ZeLMVNIxIfZLbG/CdHI5PA==" crossorigin="anonymous"></script>
         <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js" data-auto-replace-svg="nest"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="../css/admin.css?v=1" rel="stylesheet">
+        <link href="../css/admin.css?v=2" rel="stylesheet">
     </head>
     <?php
     $host = "localhost";
@@ -101,9 +101,6 @@ if (isset($_SESSION["username"])) {
                                         while ($rowAddress = mysqli_fetch_array($resultAddress, MYSQLI_BOTH)) {
                                             if ($row2['order_date'] != $currentDate) {
                                 ?>
-                                                <tr style="background-color:#000000;">
-                                                    <td colspan="5"></td>
-                                                </tr>
                                                 <tr style="background-color:#000000">
                                                     <th colspan="2" class="order_num" style="text-align:left;">
                                                         <img src="../<?php echo $rowUser['user_image'] ?>" class="rounded-circle" width="37" height="37" style="margin-top:2px;object-fit:cover;">
@@ -123,7 +120,6 @@ if (isset($_SESSION["username"])) {
                                                     </td>
                                                 </tr>
                                                 <tr style="background-color:#1a1a1a">
-                                                    <th> </th>
                                                     <th style="text-align:left;">PRODUCT</th>
                                                     <th>VOLUME</th>
                                                     <th>PRICE</th>
@@ -135,13 +131,8 @@ if (isset($_SESSION["username"])) {
                                             }
                                             ?>
                                             <tr>
-                                                <td style="width:2%;padding:15px;">
-                                                    <div class="container" style="width:100%;height:100%;">
-                                                        <div class="cover"><img width="100px" height="150px" src="../upload/<?php echo $row2['cover'] ?>" /></div>
-                                                    </div>
-                                                </td>
                                                 <td class="title" style="width:68%;text-align:left;">
-                                                    <p style="font-size:30px;font-weight:600;margin-bottom:0;"><?php echo $row2['title'] ?></p>
+                                                    <p style="font-size:20px;font-weight:600;margin-bottom:0;"><?php echo $row2['title'] ?></p>
                                                     <p><?php echo $row2['alternative_title'] ?></p>
                                                     <span style="display:none"><?php echo $row2['order_num'] ?></span>
                                                     <!------ to let the fucntion know that this is a different id ------------>
@@ -162,19 +153,19 @@ if (isset($_SESSION["username"])) {
                                             if (!empty($nextrows[$x])) {
                                                 if ($row2['order_num'] != $nextrows[$x]) { ?>
                                                     <tr style="border-top:1px solid #3b3b3b;font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-top:20px;padding-right:3%">RM<?php echo $order_total ?></td>
                                                     </tr>
                                                     <tr style="font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0">Discount:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0">Discount:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-right:3%">-RM<?php echo $row2['discount'] ?></td>
                                                     </tr>
                                                     <tr style="font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0">Total Payment:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0">Total Payment:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-right:3%">RM<?php echo $total_payment ?></td>
                                                     </tr>
                                                     <tr style="font-weight:500">
-                                                        <td colspan="3" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
+                                                        <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
                                                         <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;padding-right:3%"><?php echo $row2['payment_method'] ?></td>
                                                     </tr>
                                                 <?php
@@ -183,19 +174,19 @@ if (isset($_SESSION["username"])) {
                                             }
                                             if (empty($nextrows[$x])) { ?>
                                                 <tr style="border-top:1px solid #3b3b3b;font-weight:500">
-                                                    <td colspan="3" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
+                                                    <td colspan="2" style="text-align:right;padding:0;padding-top:20px;">Order Total:</td>
                                                     <td colspan="2" style="text-align:right;padding:0;padding-top:20px;padding-right:3%">RM<?php echo $order_total ?></td>
                                                 </tr>
                                                 <tr style="font-weight:500">
-                                                    <td colspan="3" style="text-align:right;padding:0">Discount:</td>
+                                                    <td colspan="2" style="text-align:right;padding:0">Discount:</td>
                                                     <td colspan="2" style="text-align:right;padding:0;padding-right:3%">-RM<?php echo $row2['discount'] ?></td>
                                                 </tr>
                                                 <tr style="font-weight:500">
-                                                    <td colspan="3" style="text-align:right;padding:0">Total Payment:</td>
+                                                    <td colspan="2" style="text-align:right;padding:0">Total Payment:</td>
                                                     <td colspan="2" style="text-align:right;padding:0;padding-right:3%">RM<?php echo $total_payment ?></td>
                                                 </tr>
                                                 <tr style="font-weight:500">
-                                                    <td colspan="3" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
+                                                    <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;">Payment Method:</td>
                                                     <td colspan="2" style="text-align:right;padding:0;padding-bottom:20px;padding-right:3%"><?php echo $row2['payment_method'] ?></td>
                                                 </tr>
                                 <?php

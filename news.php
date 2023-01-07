@@ -250,7 +250,7 @@ if (isset($_SESSION["username"])) {
                     <div class="col-sm-3">
                         <div class="row">
                             <div class="col">
-                                <div class="container" style="position:sticky;margin-top:20px;margin-bottom:20px;">
+                                <div class="container" style="position:sticky;margin-top:45px;margin-bottom:20px;">
                                     <div class="card" style="border:none;border-radius:5px;background-color:transparent">
                                         <div class="card-header" style="background-color:transparent;padding:0px">
                                             <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">TOP 3 DONATORS</p>
