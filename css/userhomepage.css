@@ -570,6 +570,15 @@ nav .navbar-nav li a:hover {
 	text-align: center;
 }
 
+.error.popover {
+	background: #fd7770 !important;
+	width:250px;
+	padding: 5px;
+}
+
+.error.popover .arrow:after {
+	border-right-color: #fd7770 !important;
+}
 /* ------------   CART  ------------*/
 .cartCover img {
 	object-fit: cover;
@@ -1334,6 +1343,7 @@ input[type=checkbox] {
 	top: 0px;
 	left: 0px;
 }
+
 .type {
 	padding: 0px;
 	padding-top: 2px;
@@ -1345,9 +1355,9 @@ input[type=checkbox] {
 	text-align: center;
 	text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.81);
 	-webkit-transform: rotate(-45deg);
-	-moz-transform:    rotate(-45deg);
-	-ms-transform:     rotate(-45deg);
-	-o-transform:      rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
 	position: relative;
 	width: 120px;
 	color: #fff;
@@ -1405,9 +1415,9 @@ input[type=checkbox] {
 
 .truncate-overflow {
 	text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    word-spacing: -0.05em;
+	hyphens: auto;
+	-webkit-hyphens: auto;
+	word-spacing: -0.05em;
 	/* ^is for justify text ... to make the justify texts not have too much spaces */
 	--max-lines: 3;
 	position: relative;
@@ -1866,10 +1876,13 @@ hr {
 		padding-left: 60px;
 		padding-right: 50px;
 	}
-	.pre-btn, .nxt-btn{
-		width:4vw;
+
+	.pre-btn,
+	.nxt-btn {
+		width: 4vw;
 	}
-	.product-category{
+
+	.product-category {
 		padding-left: 60px;
 	}
 }

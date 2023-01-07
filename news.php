@@ -261,7 +261,7 @@ if (isset($_SESSION["username"])) {
                                         $query3 = "SELECT * FROM user WHERE username = '$row2[username]'";
                                         $result3 = mysqli_query($link, $query3);
                                         while ($row3 = mysqli_fetch_array($result3, MYSQLI_BOTH)) { ?>
-                                            <tr onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
+                                            <tr style='cursor: pointer;' onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
                                                 <td style="padding:10px;padding-left:10px">
                                                     <img src="<?php echo $row3['user_image'] ?>" class="rounded-circle" width="40" height="40" style="object-fit:cover;">
                                                 </td>

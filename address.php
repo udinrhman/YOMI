@@ -231,7 +231,7 @@ if (isset($_SESSION["username"])) {
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <label>Fullname :</label>
+                                                                <label>Full Name :</label>
                                                                 <input type="text" name="fullname" id="fullname" class="form-control fullname" maxlength="255" value="<?php echo $row2['fullname']; ?>" required>
                                                             </div>
                                                         </div>
@@ -296,7 +296,7 @@ if (isset($_SESSION["username"])) {
 
                                                 <div class="modal-footer">
                                                     <span class="btn btn-secondary reset" id="reset" onClick="resetFields()">RESET</span>
-                                                    <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">EDIT</button>
+                                                    <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">UPDATE</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -432,7 +432,7 @@ if (isset($_SESSION["username"])) {
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <label>Fullname :</label>
+                                                                <label>Full Name :</label>
                                                                 <input type="text" name="fullname" id="fullname<?php echo $row3['address_id']; ?>" class="form-control fullname" maxlength="255" value="<?php echo $row3['fullname']; ?>" required>
                                                             </div>
                                                         </div>
@@ -497,7 +497,7 @@ if (isset($_SESSION["username"])) {
 
                                                 <div class="modal-footer">
                                                     <span class="btn btn-secondary reset" id="reset" onClick="resetFields()">RESET</span>
-                                                    <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress<?php echo $row3['address_id']; ?>">EDIT</button>
+                                                    <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress<?php echo $row3['address_id']; ?>">UPDATE</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -558,8 +558,8 @@ if (isset($_SESSION["username"])) {
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Fullname :</label>
-                                                        <input type="text" name="fullname" id="addfullname" class="form-control" maxlength="255" required>
+                                                        <label>Full Name :</label>
+                                                        <input type="text" name="Full Name" id="addfullname" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">

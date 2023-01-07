@@ -215,7 +215,7 @@ if (isset($_SESSION["username"])) {
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label>Fullname :</label>
+                                                                    <label>Full Name :</label>
                                                                     <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" value="<?php echo $row5['fullname']; ?>" required>
                                                                 </div>
                                                             </div>
@@ -280,7 +280,7 @@ if (isset($_SESSION["username"])) {
 
                                                     <div class="modal-footer">
                                                         <span class="btn btn-secondary reset" id="reset" onClick="resetFields()">RESET</span>
-                                                        <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">EDIT</button>
+                                                        <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">UPDATE</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -347,7 +347,7 @@ if (isset($_SESSION["username"])) {
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label>Fullname :</label>
+                                                                    <label>Full Name :</label>
                                                                     <input type="text" name="fullname" id="fullname" class="form-control" maxlength="255" value="<?php echo $row2['fullname']; ?>" required>
                                                                 </div>
                                                             </div>
@@ -412,7 +412,7 @@ if (isset($_SESSION["username"])) {
 
                                                     <div class="modal-footer">
                                                         <span class="btn btn-secondary reset" id="reset" onClick="resetFields()">RESET</span>
-                                                        <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">EDIT</button>
+                                                        <button type="submit" name="editAddress" value="Submit" class="btn btn-primary editAddress">UPDATE</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -458,7 +458,7 @@ if (isset($_SESSION["username"])) {
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Fullname :</label>
+                                                        <label>Full Name :</label>
                                                         <input type="text" name="fullname" id="addfullname" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>
@@ -543,7 +543,7 @@ if (isset($_SESSION["username"])) {
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Fullname :</label>
+                                                        <label>Full Name :</label>
                                                         <input type="text" name="fullname" id="addfullname2" class="form-control" maxlength="255" required>
                                                     </div>
                                                 </div>

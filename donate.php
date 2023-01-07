@@ -174,9 +174,9 @@ if (isset($_SESSION["username"])) {
                                     $query3 = "SELECT * FROM user WHERE username = '$row2[username]'";
                                     $result3 = mysqli_query($link, $query3);
                                     while ($row3 = mysqli_fetch_array($result3, MYSQLI_BOTH)) { ?>
-                                        <tr>
+                                        <tr style='cursor: pointer;' onclick="window.location='dynamicProfile.php?ID=<?php echo $row3['username'] ?>';">
                                             <td style="width:100px;padding:20px">
-                                                <a href="dynamicProfile.php?ID=<?php echo $row3['username'] ?>"><img src="<?php echo $row3['user_image'] ?>" class="rounded-circle" width="80" height="80" style="object-fit:cover;"></a>
+                                                <img src="<?php echo $row3['user_image'] ?>" class="rounded-circle" width="80" height="80" style="object-fit:cover;">
                                             </td>
                                             <td style="text-align:left;padding-top:35px;padding-bottom:35px;">
                                                 <span style="font-size:30px;font-weight:600"><?php echo $row2['username'] ?><span>
@@ -230,7 +230,7 @@ if (isset($_SESSION["username"])) {
                             $resultDonation = mysqli_query($link, $queryDonation);
                             while ($donation = mysqli_fetch_array($resultDonation, MYSQLI_BOTH)) {
                             ?>
-                                <p><span style="color:#BF95FC;font-weight:500;"><?php echo $donation['username'] ?></span>&nbsp&nbsp&nbsp donated <?php echo $donation['yomi_tokens'] ?> YOMI Tokens</p>
+                                <p><a href="dynamicProfile.php?ID=<?php echo $donation['username'] ?>"><span style="color:#BF95FC;font-weight:500;"><?php echo $donation['username'] ?></a></span>&nbsp&nbsp&nbsp donated <?php echo $donation['yomi_tokens'] ?> YOMI Tokens</p>
                             <?php } ?>
                         </div>
                     </div>
