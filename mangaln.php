@@ -19,13 +19,14 @@ if (isset($_SESSION["username"])) {
         <link href="css/bootstrap-select.min.css" rel="stylesheet">
         <link href="css/userHomepage.css?V=1" rel="stylesheet">
         <style>
-            .dropdown-item{
-                padding-left:0;
+            .dropdown-item {
+                padding-left: 0;
                 color: #fff;
             }
-            .dropdown-item:hover{
+
+            .dropdown-item:hover {
                 background-color: transparent;
-                color:#fff;
+                color: #fff;
             }
         </style>
     </head>
@@ -166,12 +167,16 @@ if (isset($_SESSION["username"])) {
                             <option value="Manga">Manga</option>
                             <option value="Light Novel">Light Novel</option>
                         </select>
+                        <input type="hidden" id="viewmoreType" value="">
                     </div>
                     <div id="filter">
                         <?php
-                        $query2 = "SELECT * FROM mangaln ORDER BY title";
+                        $query2 = "SELECT * FROM mangaln ORDER BY title LIMIT 15";
                         $result2 = mysqli_query($link, $query2);
-                        $countmanga = mysqli_num_rows($result2);
+
+                        $countAll = "SELECT * FROM mangaln ORDER BY title";
+                        $resultCount = mysqli_query($link, $countAll);
+                        $countmanga = mysqli_num_rows($resultCount);
 
                         if (mysqli_num_rows($result2) == 0) {
                         ?>
@@ -185,71 +190,83 @@ if (isset($_SESSION["username"])) {
                         <p class="card-text" style="color:#c0c0c0;float:left;margin-left:1%;"><?php echo $countmanga ?> result for <strong>All</strong></p><br>
                         <div id="mainparent">
                             <div class="centerized">
-                                <?php while ($row2 = mysqli_fetch_array($result2, MYSQLI_BOTH)) {
-                                ?>
-                                    <div class="container">
-                                        <a href='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>'>
-                                            <div class="details">
-                                                <p style="font-size:16px;font-weight:500;color:#BF95FC;margin-bottom: 6px;"><?php echo $row2['title'] ?></p>
-                                                <p class="truncate-overflow"><?php echo $row2['synopsis'] ?></p>
-                                                <hr>
-                                                <p><span style="color:#949494">Alternative name: </span><?php echo $row2['alternative_title'] ?></p>
-                                                <p><span style="color:#949494">Type: </span><?php echo $row2['type'] ?></p>
-                                                <p><span style="color:#949494">Author: </span><?php echo $row2['author'] ?></p>
-                                                <p><span style="color:#949494">Total Volume: </span><?php echo $row2['total_volume'] ?></p>
-                                                <p><span style="color:#949494">Release Year: </span><?php echo $row2['release_year'] ?></p>
-                                                <p><span style="color:#949494">Status: </span><?php echo $row2['publication'] ?></p>
-                                                <p><span style="color:#949494">Genre: </span>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <?php while ($row2 = mysqli_fetch_array($result2, MYSQLI_BOTH)) {
+                                        ?>
+                                            <div class="container">
+                                                <a href='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>'>
+                                                    <div class="details">
+                                                        <p style="font-size:16px;font-weight:500;color:#BF95FC;margin-bottom: 6px;"><?php echo $row2['title'] ?></p>
+                                                        <p class="truncate-overflow"><?php echo $row2['synopsis'] ?></p>
+                                                        <hr>
+                                                        <p><span style="color:#949494">Alternative name: </span><?php echo $row2['alternative_title'] ?></p>
+                                                        <p><span style="color:#949494">Type: </span><?php echo $row2['type'] ?></p>
+                                                        <p><span style="color:#949494">Author: </span><?php echo $row2['author'] ?></p>
+                                                        <p><span style="color:#949494">Total Volume: </span><?php echo $row2['total_volume'] ?></p>
+                                                        <p><span style="color:#949494">Release Year: </span><?php echo $row2['release_year'] ?></p>
+                                                        <p><span style="color:#949494">Status: </span><?php echo $row2['publication'] ?></p>
+                                                        <p><span style="color:#949494">Genre: </span>
+                                                            <?php
+                                                            $mark = explode(",", $row2['genre']);
+                                                            $numItems = count($mark);
+                                                            $i = 0;
+                                                            foreach ($mark as $genre) {
+                                                                if (++$i === $numItems) { //if last element, no comma
+                                                                    echo "<a class='product-genre' style='color:#BF95FC' href='search.php?ID=" . $genre . "'>" . $genre . "</a> ";       //link based on tags
+                                                                } else {
+                                                                    echo "<a class='product-genre' style='color:#BF95FC' href='search.php?ID=" . $genre . "'>" . $genre . ",</a> ";
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                                <div class="cover"><a href='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>'><img src="upload/<?php echo $row2['cover'] ?>" /></a></div>
+                                                <div class="type-wrapper">
                                                     <?php
-                                                    $mark = explode(",", $row2['genre']);
-                                                    $numItems = count($mark);
-                                                    $i = 0;
-                                                    foreach ($mark as $genre) {
-                                                        if (++$i === $numItems) { //if last element, no comma
-                                                            echo "<a class='product-genre' style='color:#BF95FC' href='search.php?ID=" . $genre . "'>" . $genre . "</a> ";       //link based on tags
-                                                        } else {
-                                                            echo "<a class='product-genre' style='color:#BF95FC' href='search.php?ID=" . $genre . "'>" . $genre . ",</a> ";
-                                                        }
-                                                    }
+                                                    if ($row2['type'] == 'Manga') {
                                                     ?>
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <div class="cover"><a href='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>'><img src="upload/<?php echo $row2['cover'] ?>" /></a></div>
-                                        <div class="type-wrapper">
-                                            <?php
-                                            if ($row2['type'] == 'Manga') {
-                                            ?>
-                                                <div class="type" style="background-color:#645CAA"><?php echo $row2['type'] ?></div>
-                                            <?php } else { ?>
-                                                <div class="type" style="background-color:#CA4E79"><?php echo $row2['type'] ?></div>
-                                            <?php } ?>
-                                        </div>
-                                        <div class="price-tag">
-                                            RM<?php echo $row2['price'] ?>
-                                        </div>
-                                        <?php
-                                        $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "'";
-                                        $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
-                                        $countVolume = mysqli_num_rows($resultStock);
+                                                        <div class="type" style="background-color:#645CAA"><?php echo $row2['type'] ?></div>
+                                                    <?php } else { ?>
+                                                        <div class="type" style="background-color:#CA4E79"><?php echo $row2['type'] ?></div>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="price-tag">
+                                                    RM<?php echo $row2['price'] ?>
+                                                </div>
+                                                <?php
+                                                $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "'";
+                                                $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
+                                                $countVolume = mysqli_num_rows($resultStock);
 
-                                        $stock = mysqli_fetch_array($resultStock, MYSQLI_BOTH);
-                                        if ($countVolume < 1 || $stock['stock'] < 1) { ?>
-                                            <!-- if no volume or all volume out of stock -->
+                                                $stock = mysqli_fetch_array($resultStock, MYSQLI_BOTH);
+                                                if ($countVolume < 1 || $stock['stock'] < 1) { ?>
+                                                    <!-- if no volume or all volume out of stock -->
 
-                                            <div class="status">
-                                                <p>SOLD OUT</p>
+                                                    <div class="status">
+                                                        <p>SOLD OUT</p>
+                                                    </div>
+                                                <?php
+                                                }
+                                                ?>
+                                                <div class="title text-truncate-container">
+                                                    <p class="text-truncate"><?php echo $row2['title'] ?> </p>
+                                                </div>
                                             </div>
                                         <?php
+                                            $id = $row2['title'];
                                         }
                                         ?>
-                                        <div class="title text-truncate-container">
-                                            <p class="text-truncate"><?php echo $row2['title'] ?> </p>
-                                        </div>
                                     </div>
-                                <?php
-                                }
-                                ?>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" id="remove_row">
+                                        <button style="width:100%;background-color:transparent;color:#BF95FC;border:none;margin-top:30px;outline:none" id="view_more" data-id="<?php echo $id; ?>">VIEW MORE</button>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -274,6 +291,30 @@ if (isset($_SESSION["username"])) {
             });
         </script>
         <script>
+            $(document).ready(function() {
+                $(document).on('click', '#view_more', function(event) {
+                    event.preventDefault();
+
+                    var id = $('#view_more').data('id');
+                    var viewmoreType = $('#viewmoreType').val();
+
+                    $.ajax({
+                        url: "/YOMI/loadMangaln.php",
+                        type: "post",
+                        data: {
+                            id: id,
+                            viewmoreType: viewmoreType,
+                        },
+                        success: function(response) {
+                            $('#remove_row').remove();
+                            $('.centerized').append(response);
+                        }
+                    });
+
+                });
+            });
+        </script>
+        <script>
             $(function() {
                 var main = $('#mainparent'),
                     centerized = $('.centerized'),
@@ -289,6 +330,7 @@ if (isset($_SESSION["username"])) {
             $(document).ready(function() {
                 $("#type").change(function() {
                     var data = $(this).find(":selected").val();
+                    $('#viewmoreType').val(data);
                     $.ajax({
                         url: '/YOMI/filterProduct.php',
                         type: "POST",
@@ -303,6 +345,7 @@ if (isset($_SESSION["username"])) {
                 });
             });
         </script>
+
 
         </body>
 

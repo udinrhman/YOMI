@@ -56,7 +56,9 @@ while ($news = mysqli_fetch_array($resultNews, MYSQLI_BOTH)) {
     </tr>';
     $id = $news['news_date'];
 }
-if (mysqli_num_rows($resultNews) > 1) {
+$checkQuery = "SELECT * FROM news WHERE news_date < '" . $id . "' ORDER BY news_date DESC LIMIT 4";
+$checkResult = mysqli_query($link, $checkQuery);
+if (mysqli_num_rows($checkResult) > 1) {
 $output .= '
             <tr id="remove_row">
                 <td colspan="2"><button id="view_more" data-id="'.$id.'">VIEW MORE</button></td>
