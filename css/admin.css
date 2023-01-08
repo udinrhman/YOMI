@@ -47,7 +47,7 @@ table tr:last-child td:last-child {
 
 .table-hover tbody tr:hover td,
 .table-hover tbody tr:hover th {
-	background-color: #000000;
+	background-color: #191919;
 	color: #F5F5F5;
 }
 

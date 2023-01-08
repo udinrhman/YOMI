@@ -152,11 +152,11 @@ if (isset($_SESSION["username"])) {
                     <div class="card-body" style="padding:0">
                         <div class="row" style="background-color:#5A2E98;margin:5px;">
                             <div class="col-10" style="padding:20px;">
-                                <span style="font-size:30px;font-weight:600">YOMI TOKENS</span>
+                                <span style="font-size:30px;font-weight:600;color:#F5F5F5">YOMI TOKENS</span>
                             </div>
                             <div class="col-2" style="padding:10px;">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col" style="color:#F5F5F5">
                                         YOUR BALANCE:<br>
                                         <span id="balance" style="font-size:25px;font-weight:600;padding:0;text-align:right"><?php echo $row1['yomi_tokens'] ?></span>
                                     </div>

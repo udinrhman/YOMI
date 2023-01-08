@@ -286,7 +286,7 @@ if (isset($_SESSION["username"])) {
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="container">
+                                <div class="container" style="margin-bottom:20px;">
                                     <div class="card" style="border:none;border-radius:5px;background-color:transparent">
                                         <div class="card-header" style="background-color:transparent;padding:0px">
                                             <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">POPULAR</p>
@@ -312,8 +312,26 @@ if (isset($_SESSION["username"])) {
                                                         <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
                                                             <div class="popular-info">
                                                                 <div class="popular-details">
-                                                                    <span class="card-text" style="font-weight:600;"><?php echo $populars['title'] ?></span>
-                                                                    <p style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                    <div class="truncate-frame">
+                                                                        <span class="text-truncate" style="font-weight:600;"><?php echo $populars['title'] ?></span>
+                                                                        <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                        <?php
+                                                                        $fullstar = 5;
+                                                                        for ($star = 0; $star < $populars['admin_rating']; $star++) {
+                                                                        ?>
+                                                                            <span class="small-star fa fa-star checked"></span>
+                                                                            <?php
+                                                                        }
+                                                                        if ($populars['admin_rating'] != 5) {
+                                                                            $blankstar = $fullstar - $populars['admin_rating'];
+                                                                            for ($star = 0; $star < $blankstar; $star++) {
+                                                                            ?>
+                                                                                <span class="small-star fa fa-star"></span>
+                                                                        <?php
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -330,7 +348,7 @@ if (isset($_SESSION["username"])) {
                         <div class="row">
                             <div class="col">
                                 <div class="container">
-                                    <div class="card" style="border:none;border-radius:5px;background-color:transparent">
+                                    <div class="card" style="border:none;border-radius:5px;background-color:transparent;">
                                         <div class="card-header" style="background-color:transparent;padding:0px">
                                             <p style="margin:0;font-size:20px;font-weight:500;color:#F5F5F5;border-bottom:2px solid #5A2E98">RECENTLY ADDED</p>
                                         </div>
@@ -351,8 +369,26 @@ if (isset($_SESSION["username"])) {
                                                         <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
                                                             <div class="popular-info">
                                                                 <div class="popular-details">
-                                                                    <span class="card-text" style="font-weight:600;"><?php echo $recents['title'] ?></span>
-                                                                    <p style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                    <div class="truncate-frame">
+                                                                        <span class="text-truncate" style="font-weight:600;"><?php echo $recents['title'] ?></span>
+                                                                        <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                        <?php
+                                                                        $fullstar = 5;
+                                                                        for ($star = 0; $star < $recents['admin_rating']; $star++) {
+                                                                        ?>
+                                                                            <span class="small-star fa fa-star checked"></span>
+                                                                            <?php
+                                                                        }
+                                                                        if ($recents['admin_rating'] != 5) {
+                                                                            $blankstar = $fullstar - $recents['admin_rating'];
+                                                                            for ($star = 0; $star < $blankstar; $star++) {
+                                                                            ?>
+                                                                                <span class="small-star fa fa-star"></span>
+                                                                        <?php
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

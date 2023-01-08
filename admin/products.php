@@ -96,7 +96,18 @@ if (isset($_SESSION["username"])) {
                 <div class="card" style="background-color:#000000">
                     <div class="card-body" style="padding:0px">
                         <div class="card-header" style="background-color:#181818;border-bottom:2px solid #777AFF">
-                            <p style="margin:0">PRODUCTS</p>
+                            <div class="row">
+                                <div class="col">
+                                    <p style="margin:0">PRODUCTS</p>
+                                </div>
+                                <div>
+                                    <div class="searchNav" style="width:300px;float:right">
+                                        <span class="fa fa-search form-control-feedback"></span>
+                                        <input type="search" class="form-control" placeholder="Search" name="Search" id="searchProduct" style="min-height: 38px;">
+                                        <input type="hidden" id="inputType" value="All">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row" style="padding-left:10px;">
                             <div class="col">
@@ -352,7 +363,7 @@ if (isset($_SESSION["username"])) {
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="rate">
-                                                            <input type="radio" id="star5" name="admin_rating" value="5" required/>
+                                                            <input type="radio" id="star5" name="admin_rating" value="5" required />
                                                             <label for="star5" title="text">5 stars</label>
                                                             <input type="radio" id="star4" name="admin_rating" value="4" />
                                                             <label for="star4" title="text">4 stars</label>
@@ -397,6 +408,7 @@ if (isset($_SESSION["username"])) {
             <script>
                 $(document).on('submit', '#all_form', function() {
                     var data = $('#all_form').serialize() + '&all=all';
+                    $('#inputType').val('All');
                     $.ajax({
                         url: '/YOMI/admin/filterProduct.php',
                         type: 'post',
@@ -419,6 +431,7 @@ if (isset($_SESSION["username"])) {
             <script>
                 $(document).on('submit', '#manga_form', function() {
                     var data = $('#manga_form').serialize() + '&manga=manga';
+                    $('#inputType').val('Manga');
                     $.ajax({
                         url: '/YOMI/admin/filterProduct.php',
                         type: 'post',
@@ -441,6 +454,7 @@ if (isset($_SESSION["username"])) {
             <script>
                 $(document).on('submit', '#ln_form', function() {
                     var data = $('#ln_form').serialize() + '&ln=ln';
+                    $('#inputType').val('Light Novel');
                     $.ajax({
                         url: '/YOMI/admin/filterProduct.php',
                         type: 'post',
@@ -463,6 +477,7 @@ if (isset($_SESSION["username"])) {
             <script>
                 $(document).on('submit', '#stock_form', function() {
                     var data = $('#stock_form').serialize() + '&stock=stock';
+                    $('#inputType').val('Stock');
                     $.ajax({
                         url: '/YOMI/admin/filterProduct.php',
                         type: 'post',
@@ -547,6 +562,29 @@ if (isset($_SESSION["username"])) {
                 function resetFields() { //reset form without [input type=reset]
                     document.getElementById("addProduct").reset();
                 }
+            </script>
+
+            <script>
+                $(document).ready(function() {
+                    $("#searchProduct").on("keyup", function() {
+                        var data = $(this).val();
+                        var inputType = $('#inputType').val();
+                        $.ajax({
+                            url: '/YOMI/admin/searchProduct.php',
+                            type: "POST",
+                            data: {
+                                keyword: data,
+                                inputType: inputType,
+                            },
+                            success: function(response) {
+                                $("#filter").html(response);
+                            },
+                            error: function(response) {
+                                alert("Failed")
+                            }
+                        });
+                    });
+                });
             </script>
         <?php    }
         ?>

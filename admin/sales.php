@@ -120,17 +120,17 @@ if (isset($_SESSION["username"])) {
                                                         </th>
                                                         <th colspan="3" style="text-align:right;padding-top:20px"><?php echo strtoupper(date("j M Y h:i A", strtotime($row2['order_date']))) ?></th>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="background-color:#28282B">
                                                         <th colspan="5" style="text-align:left">Delivery Address</th>
                                                     </tr>
                                                     <tr style="border-bottom:2px solid #3b3b3b">
-                                                        <td colspan="5" style="text-align:left">
+                                                        <td colspan="5" style="text-align:left;padding:10px">
                                                             <span style="font-weight:600;font-size:20px"><?php echo $rowAddress['fullname'] ?></span>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp(+60) <?php echo $rowAddress['phone_number'] ?> <br>
                                                             <?php echo $rowAddress['street'] ?>, <?php echo $rowAddress['floor_unit'] ?> <br>
                                                             <?php echo $rowAddress['town_city'] ?>, <?php echo $rowAddress['postcode'] ?> <?php echo $rowAddress['state_region'] ?>
                                                         </td>
                                                     </tr>
-                                                    <tr style="background-color:#1a1a1a">
+                                                    <tr style="background-color:#28282B">
                                                         <th style="text-align:left;">PRODUCT</th>
                                                         <th>VOLUME</th>
                                                         <th>PRICE</th>

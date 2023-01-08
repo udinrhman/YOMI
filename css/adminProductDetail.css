@@ -269,6 +269,10 @@ table tr:last-child td:last-child {
 	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.227);
 }
 
+.small-star .fa-star {
+	font-size: 13px;
+}
+
 .checked {
 	color: #FFC700;
 }

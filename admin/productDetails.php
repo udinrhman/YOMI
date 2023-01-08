@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="../css/adminProductDetail.css" rel="stylesheet">
+        <link href="../css/adminProductDetail.css?V=1" rel="stylesheet">
         <style>
             .stock th {
                 padding: 20px;
@@ -731,7 +731,7 @@ if (isset($_SESSION["username"])) {
                                                     $queryPopular = "SELECT mangaln.*, SUM(orders.quantity) AS order_count
                                                                     FROM mangaln LEFT JOIN orders 
                                                                     ON mangaln.mangaln_id = orders.mangaln_id
-                                                                    GROUP BY mangaln.mangaln_id
+                                                                    WHERE mangaln.mangaln_id != '" . $ID . "' GROUP BY mangaln.mangaln_id
                                                                     ORDER BY order_count DESC LIMIT 5";
                                                     $resultPopular = mysqli_query($link, $queryPopular);
                                                     $popular   = $resultPopular->fetch_all(MYSQLI_ASSOC);
@@ -750,6 +750,22 @@ if (isset($_SESSION["username"])) {
                                                                             <div class="truncate-frame">
                                                                                 <span class="text-truncate" style="font-weight:600;"><?php echo $populars['title'] ?></span>
                                                                                 <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                                <?php
+                                                                                $fullstar = 5;
+                                                                                for ($star = 0; $star < $populars['admin_rating']; $star++) {
+                                                                                ?>
+                                                                                    <span class="small-star fa fa-star checked"></span>
+                                                                                    <?php
+                                                                                }
+                                                                                if ($populars['admin_rating'] != 5) {
+                                                                                    $blankstar = $fullstar - $populars['admin_rating'];
+                                                                                    for ($star = 0; $star < $blankstar; $star++) {
+                                                                                    ?>
+                                                                                        <span class="small-star fa fa-star"></span>
+                                                                                <?php
+                                                                                    }
+                                                                                }
+                                                                                ?>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -791,6 +807,22 @@ if (isset($_SESSION["username"])) {
                                                                             <div class="truncate-frame">
                                                                                 <span class="text-truncate" style="font-weight:600;"><?php echo $recents['title'] ?></span>
                                                                                 <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                                <?php
+                                                                                $fullstar = 5;
+                                                                                for ($star = 0; $star < $recents['admin_rating']; $star++) {
+                                                                                ?>
+                                                                                    <span class="small-star fa fa-star checked"></span>
+                                                                                    <?php
+                                                                                }
+                                                                                if ($recents['admin_rating'] != 5) {
+                                                                                    $blankstar = $fullstar - $recents['admin_rating'];
+                                                                                    for ($star = 0; $star < $blankstar; $star++) {
+                                                                                    ?>
+                                                                                        <span class="small-star fa fa-star"></span>
+                                                                                <?php
+                                                                                    }
+                                                                                }
+                                                                                ?>
                                                                             </div>
                                                                         </div>
                                                                     </div>

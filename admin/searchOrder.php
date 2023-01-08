@@ -10,16 +10,13 @@ if (isset($_POST['keyword'])) {
 
     $keyword = $_POST['keyword'];
     if (!empty($keyword)) { //if keyword is inserted
-        $query = "SELECT order_num FROM orders WHERE (order_num LIKE '%" . $keyword . "%' OR title LIKE '%" . $keyword . "%' OR alternative_title LIKE '%" . $keyword . "%') ORDER BY order_date DESC"; //have to add FULLTEXT index in sql - ALTER TABLE table_name ADD FULLTEXT index_name(column1, column2)
-        $result = mysqli_query($link, $query);
-        while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-            $query2 = "SELECT * FROM orders WHERE order_num = '" . $row['order_num'] . "' ORDER BY order_date DESC"; //have to add FULLTEXT index in sql - ALTER TABLE table_name ADD FULLTEXT index_name(column1, column2)
+            $query2 = "SELECT * FROM orders WHERE (username LIKE '%" . $keyword . "%' OR order_num LIKE '%" . $keyword . "%' OR title LIKE '%" . $keyword . "%' OR alternative_title LIKE '%" . $keyword . "%') ORDER BY order_date DESC"; //have to add FULLTEXT index in sql - ALTER TABLE table_name ADD FULLTEXT index_name(column1, column2)
             $result2 = mysqli_query($link, $query2);
 
-            $query3 = "SELECT order_num FROM orders WHERE order_num = '" . $row['order_num'] . "' ORDER BY order_date DESC";
+            $query3 = "SELECT order_num FROM orders WHERE (username LIKE '%" . $keyword . "%' OR order_num LIKE '%" . $keyword . "%' OR title LIKE '%" . $keyword . "%' OR alternative_title LIKE '%" . $keyword . "%') ORDER BY order_date DESC";
             $result3 = mysqli_query($link, $query3);
 ?>
-            <table id="myOrders" class="table table-borderless">
+            <table id="myOrders" class="table table-borderless table-hover">
                 <?php
                 if (mysqli_num_rows($result2) == 0) {
                 ?>
@@ -59,17 +56,17 @@ if (isset($_POST['keyword'])) {
                                         </th>
                                         <th colspan="3" style="text-align:right;padding-top:20px"><?php echo strtoupper(date("j M Y h:i A", strtotime($row2['order_date']))) ?></th>
                                     </tr>
-                                    <tr>
+                                    <tr style="background-color:#28282B">
                                         <th colspan="5" style="text-align:left;">Delivery Address</th>
                                     </tr>
                                     <tr style="border-bottom:2px solid #3b3b3b">
-                                        <td colspan="5" style="text-align:left">
+                                        <td colspan="5" style="text-align:left;padding:10px">
                                             <span style="font-weight:600;font-size:20px"><?php echo $rowAddress['fullname'] ?></span>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp(+60) <?php echo $rowAddress['phone_number'] ?> <br>
                                             <?php echo $rowAddress['street'] ?>, <?php echo $rowAddress['floor_unit'] ?> <br>
                                             <?php echo $rowAddress['town_city'] ?>, <?php echo $rowAddress['postcode'] ?> <?php echo $rowAddress['state_region'] ?>
                                         </td>
                                     </tr>
-                                    <tr style="background-color:#1a1a1a">
+                                    <tr style="background-color:#28282B">
                                         <th style="text-align:left;">PRODUCT</th>
                                         <th>VOLUME</th>
                                         <th>PRICE</th>
@@ -146,7 +143,6 @@ if (isset($_POST['keyword'])) {
                             }
                         }
                     }
-                }
                 ?>
                 </tbody>
             </table>
@@ -158,7 +154,7 @@ if (isset($_POST['keyword'])) {
         $query3 = "SELECT order_num FROM orders ORDER BY order_date DESC";
         $result3 = mysqli_query($link, $query3);
         ?>
-            <table id="myOrders" class="table table-borderless">
+            <table id="myOrders" class="table table-borderless table-hover">
                 <?php
                 if (mysqli_num_rows($result2) == 0) {
                 ?>
@@ -198,17 +194,17 @@ if (isset($_POST['keyword'])) {
                                         </th>
                                         <th colspan="3" style="text-align:right;padding-top:20px"><?php echo strtoupper(date("j M Y h:i A", strtotime($row2['order_date']))) ?></th>
                                     </tr>
-                                    <tr>
+                                    <tr style="background-color:#28282B">
                                         <th colspan="5" style="text-align:left;">Delivery Address</th>
                                     </tr>
                                     <tr style="border-bottom:2px solid #3b3b3b">
-                                        <td colspan="5" style="text-align:left">
+                                        <td colspan="5" style="text-align:left;padding:10px">
                                             <span style="font-weight:600;font-size:20px"><?php echo $rowAddress['fullname'] ?></span>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp(+60) <?php echo $rowAddress['phone_number'] ?> <br>
                                             <?php echo $rowAddress['street'] ?>, <?php echo $rowAddress['floor_unit'] ?> <br>
                                             <?php echo $rowAddress['town_city'] ?>, <?php echo $rowAddress['postcode'] ?> <?php echo $rowAddress['state_region'] ?>
                                         </td>
                                     </tr>
-                                    <tr style="background-color:#1a1a1a">
+                                    <tr style="background-color:#28282B">
                                         <th style="text-align:left;">PRODUCT</th>
                                         <th>VOLUME</th>
                                         <th>PRICE</th>
@@ -219,7 +215,7 @@ if (isset($_POST['keyword'])) {
                                     $currentDate = $row2['order_date'];
                                 }
                                 ?>
-                                <tr>
+                                <tr style="cursor:pointer" onclick="window.location='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>';">
                                     <td class="title" style="width:68%;text-align:left;">
                                         <p style="font-size:20px;font-weight:600;margin-bottom:0;"><?php echo $row2['title'] ?></p>
                                         <p><?php echo $row2['alternative_title'] ?></p>
