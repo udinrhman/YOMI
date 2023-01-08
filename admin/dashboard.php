@@ -216,7 +216,7 @@ if (isset($_SESSION["username"])) {
                                                     $currentDate = $row2['order_date'];
                                                 }
                                                 ?>
-                                                <tr>
+                                                <tr style="cursor:pointer" onclick="window.location='productDetails.php?ID=<?php echo $row2['mangaln_id'] ?>';">
                                                     <td class="title" style="text-align:left;">
                                                         <p style="font-size:20px;font-weight:600;margin-bottom:0;"><?php echo $row2['title'] ?></p>
                                                         <p><?php echo $row2['alternative_title'] ?></p>
