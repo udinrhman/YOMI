@@ -48,7 +48,7 @@ if (isset($_SESSION["username"])) {
                                 <li class="nav-item"> <a class="nav-link" href="dashboard.php">DASHBOARD</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="sales.php">SALES</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="products.php">PRODUCTS</a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="users.php">USERS</a> </li>
+                                <li class="nav-item"> <a style="border-bottom: 2px solid #777AFF" class="nav-link" href="users.php">USERS</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="news.php">NEWS</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="donate.php">DONATE</a> </li>
                             </ul>

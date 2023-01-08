@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-        <link href="../css/adminProductDetail.css?V=1" rel="stylesheet">
+        <link href="../css/adminProductDetail.css" rel="stylesheet">
         <style>
             .stock th {
                 padding: 20px;
@@ -747,8 +747,10 @@ if (isset($_SESSION["username"])) {
                                                                 <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
                                                                     <div class="popular-info">
                                                                         <div class="popular-details">
-                                                                            <span class="card-text" style="font-weight:600;"><?php echo $populars['title'] ?></span>
-                                                                            <p style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                            <div class="truncate-frame">
+                                                                                <span class="text-truncate" style="font-weight:600;"><?php echo $populars['title'] ?></span>
+                                                                                <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -786,8 +788,10 @@ if (isset($_SESSION["username"])) {
                                                                 <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
                                                                     <div class="popular-info">
                                                                         <div class="popular-details">
-                                                                            <span class="card-text" style="font-weight:600;"><?php echo $recents['title'] ?></span>
-                                                                            <p style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                            <div class="truncate-frame">
+                                                                                <span class="text-truncate" style="font-weight:600;"><?php echo $recents['title'] ?></span>
+                                                                                <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $recents['alternative_title'] ?></p>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>

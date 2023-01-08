@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
 
         <link href="css/bootstrap-select.min.css" rel="stylesheet">
-        <link href="css/productDetail.css?v=1" rel="stylesheet">
+        <link href="css/productDetail.css" rel="stylesheet">
 
     </head>
 
@@ -548,8 +548,10 @@ if (isset($_SESSION["username"])) {
                                                                         <div class="col popular-col" style="padding-left:15px;">
                                                                             <div class="popular-info">
                                                                                 <div class="popular-details">
-                                                                                    <span class="card-text" style="font-weight:600;"><?php echo $rowRRC['title'] ?></span>
-                                                                                    <p style="font-size:12px;margin-bottom:0px"><?php echo $rowRRC['alternative_title'] ?></p>
+                                                                                    <div class="truncate-frame">
+                                                                                        <span class="text-truncate" style="font-weight:600;"><?php echo $rowRRC['title'] ?></span>
+                                                                                        <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $rowRRC['alternative_title'] ?></p>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -594,8 +596,10 @@ if (isset($_SESSION["username"])) {
                                                                 <div class="col popular-col" style="padding-right:15px;padding-left:15px;">
                                                                     <div class="popular-info">
                                                                         <div class="popular-details">
-                                                                            <span class="card-text" style="font-weight:600;"><?php echo $populars['title'] ?></span>
-                                                                            <p style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                            <div class="truncate-frame">
+                                                                                <span class="text-truncate" style="font-weight:600;"><?php echo $populars['title'] ?></span>
+                                                                                <p class="text-truncate" style="font-size:12px;margin-bottom:0px"><?php echo $populars['alternative_title'] ?></p>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
