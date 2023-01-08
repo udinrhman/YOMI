@@ -45,6 +45,12 @@ table tr:last-child td:last-child {
 	border-bottom-right-radius: 5px;
 }
 
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+	background-color: #000000;
+	color: #F5F5F5;
+}
+
 .alert {
 	text-align: center;
 	padding: 30px;
