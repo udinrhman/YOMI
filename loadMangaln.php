@@ -63,7 +63,7 @@ while ($row2 = mysqli_fetch_array($result, MYSQLI_BOTH)) {
                         RM' . $row2['price'] . '
                     </div>';
 
-    $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "'";
+    $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "' AND stock != '0'";
     $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
     $countVolume = mysqli_num_rows($resultStock);
 

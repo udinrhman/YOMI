@@ -175,7 +175,7 @@ if (isset($_SESSION["username"])) {
                                         ORDER BY order_count DESC LIMIT 15";
                         $resultPopular = mysqli_query($link, $queryPopular);
                         while ($popular = mysqli_fetch_array($resultPopular, MYSQLI_BOTH)) {
-                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $popular['mangaln_id'] . "'";
+                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $popular['mangaln_id'] . "' AND stock != '0'";
                             $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
                             $countVolume = mysqli_num_rows($resultStock);
 
@@ -255,7 +255,7 @@ if (isset($_SESSION["username"])) {
                         $queryLatest = "SELECT * FROM mangaln ORDER BY mangaln_date DESC LIMIT 15";
                         $resultLatest = mysqli_query($link, $queryLatest);
                         while ($latest = mysqli_fetch_array($resultLatest, MYSQLI_BOTH)) {
-                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $latest['mangaln_id'] . "'";
+                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $latest['mangaln_id'] . "' AND stock != '0'";
                             $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
                             $countVolume = mysqli_num_rows($resultStock);
 
@@ -335,7 +335,7 @@ if (isset($_SESSION["username"])) {
                         $queryRecent = "SELECT * FROM mangaln ORDER BY mangaln_id DESC LIMIT 15";
                         $resultProduct = mysqli_query($link, $queryRecent);
                         while ($recent = mysqli_fetch_array($resultProduct, MYSQLI_BOTH)) {
-                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $recent['mangaln_id'] . "'";
+                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $recent['mangaln_id'] . "' AND stock != '0'";
                             $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
                             $countVolume = mysqli_num_rows($resultStock);
 

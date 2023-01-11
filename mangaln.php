@@ -236,7 +236,7 @@ if (isset($_SESSION["username"])) {
                                                     RM<?php echo $row2['price'] ?>
                                                 </div>
                                                 <?php
-                                                $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "'";
+                                                $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "' AND stock != '0'";
                                                 $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
                                                 $countVolume = mysqli_num_rows($resultStock);
 
@@ -499,7 +499,7 @@ if (isset($_SESSION["username"])) {
                                                 RM<?php echo $row2['price'] ?>
                                             </div>
                                             <?php
-                                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "'";
+                                            $queryStock = "SELECT * FROM stock WHERE mangaln_id = '" . $row2['mangaln_id'] . "' AND stock != '0'";
                                             $resultStock = mysqli_query($link, $queryStock) or die(mysqli_error($link));
                                             $countVolume = mysqli_num_rows($resultStock);
 

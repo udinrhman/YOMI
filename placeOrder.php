@@ -103,6 +103,9 @@ if (isset($_SESSION["username"])) {
                         VALUES ('" . $order_num . "','" . $row['mangaln_id'] . "','" . $row['cover'] . "','" . addslashes($row['title']) . "','" . addslashes($row['alternative_title']) . "','" . $row['volume'] . "','" . $row['price'] . "','" . $row['quantity'] . "','" . $row['subtotal'] . "','0','" . $payment_method . "',CURRENT_TIMESTAMP, '" . $address . "','" . $row['username'] . "')";
                         $result4 = mysqli_query($link, $query4);
                         $total_quantity = $total_quantity + $row['quantity'];
+
+                        $queryDeleteStock = "UPDATE stock SET stock = stock - '".$row['quantity']."' WHERE volume = '".$row['volume']."' AND mangaln_id = '" . $row['mangaln_id'] . "'";
+                        $resultDeleteStock = mysqli_query($link, $queryDeleteStock);
                     }
                     $earn = $row1['yomi_tokens'] + ($total_quantity * 10);
                     if ($result4) {
@@ -119,6 +122,9 @@ if (isset($_SESSION["username"])) {
                         VALUES ('" . $order_num . "','" . $row['mangaln_id'] . "','" . $row['cover'] . "','" . addslashes($row['title']) . "','" . addslashes($row['alternative_title']) . "','" . $row['volume'] . "','" . $row['price'] . "','" . $row['quantity'] . "','" . $row['subtotal'] . "','" . $discount . "','" . $payment_method . "',CURRENT_TIMESTAMP, '" . $address . "','" . $row['username'] . "')";
                         $result4 = mysqli_query($link, $query4);
                         $total_quantity = $total_quantity + $row['quantity'];
+
+                        $queryDeleteStock = "UPDATE stock SET stock = stock - '".$row['quantity']."' WHERE volume = '".$row['volume']."' AND mangaln_id = '" . $row['mangaln_id'] . "'";
+                        $resultDeleteStock = mysqli_query($link, $queryDeleteStock);
                     }
                     if ($result4) {
                         $earn = $total_quantity * 10;
@@ -135,6 +141,9 @@ if (isset($_SESSION["username"])) {
                         VALUES ('" . $order_num . "','" . $row['mangaln_id'] . "','" . $row['cover'] . "','" . addslashes($row['title']) . "','" . addslashes($row['alternative_title']) . "','" . $row['volume'] . "','" . $row['price'] . "','" . $row['quantity'] . "','" . $row['subtotal'] . "','0','" . $payment_method . "',CURRENT_TIMESTAMP, '" . $address . "','" . $row['username'] . "')";
                         $result4 = mysqli_query($link, $query4);
                         $total_quantity = $total_quantity + $row['quantity'];
+
+                        $queryDeleteStock = "UPDATE stock SET stock = stock - '".$row['quantity']."' WHERE volume = '".$row['volume']."' AND mangaln_id = '" . $row['mangaln_id'] . "'";
+                        $resultDeleteStock = mysqli_query($link, $queryDeleteStock);
                     }
                     if ($result4) {
                         $earn = $total_quantity * 10;

@@ -206,7 +206,7 @@ if (isset($_SESSION["username"])) {
                                                         FROM mangaln LEFT JOIN orders 
                                                         ON mangaln.mangaln_id = orders.mangaln_id
                                                         GROUP BY mangaln.mangaln_id
-                                                        ORDER BY order_count LIMIT 8";
+                                                        ORDER BY order_count LIMIT 3";
                                     $resultPopular = mysqli_query($link, $popularProduct);
 
                                     while ($popular = mysqli_fetch_array($resultPopular, MYSQLI_BOTH)) {
@@ -458,7 +458,7 @@ if (isset($_SESSION["username"])) {
                                                         FROM mangaln LEFT JOIN orders 
                                                         ON mangaln.mangaln_id = orders.mangaln_id
                                                         GROUP BY mangaln.mangaln_id
-                                                        ORDER BY order_count LIMIT 8";
+                                                        ORDER BY order_count LIMIT 3";
                             $resultPopular = mysqli_query($link, $popularProduct);
 
                             while ($popular = mysqli_fetch_array($resultPopular, MYSQLI_BOTH)) {

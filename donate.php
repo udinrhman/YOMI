@@ -205,11 +205,11 @@ if (isset($_SESSION["username"])) {
                                     <span style="font-size:30px;font-weight:500;">DONATE NOW:</span>
                                 </div>
                                 <div class="col-2" style="padding:20px;">
-                                    <span style="float:left"><input type="number" id="yomi_tokens" name="yomi_tokens" value="10" min="10" max="<?php echo $row1['yomi_tokens'] ?>" step="10" pattern="[0-9]*"></span>
+                                    <span style="float:left"><input type="number" id="yomi_tokens" name="yomi_tokens" value="10" min="0" max="<?php echo $row1['yomi_tokens'] ?>" step="10" pattern="[0-9]*"></span>
                                 </div>
                                 <div class="col" style="padding:10px;">
                                     <input type="hidden" id="username" value="<?php echo $row1['username'] ?>" name="username">
-                                    <span style="float:right;padding:20px"><input class="btn btn-primary" type="submit" name="donate" value="DONATE"></span>
+                                    <span style="float:right;padding:20px"><input class="btn btn-primary" type="submit" name="donate" id="donate-button" value="DONATE"></span>
                                 </div>
 
                             </div>
@@ -281,6 +281,15 @@ if (isset($_SESSION["username"])) {
 
             <script>
                 $(document).ready(function() {
+                    if ($('#yomi_tokens').val() == "0") {
+                        $("#donate-button").attr("disabled", "disabled");
+                    } else {
+                        $("#donate-button").removeAttr("disabled", "disabled");
+                    }
+                });
+            </script>
+            <script>
+                $(document).ready(function() {
                     $('#donate_form').submit(function(e) {
                         e.preventDefault(); //prevent from refreshing]
                         var data = $('#donate_form').serialize() + '&donate=donate';
@@ -294,9 +303,10 @@ if (isset($_SESSION["username"])) {
                                 $("#top3").load(" #top3")
                                 $("#token").load(" #token")
                                 $("#recentDonate").load(" #recentDonate")
+                                $('#yomi_tokens').load(' #yomi_tokens');
                                 $("#result").addClass('alert alert-success')
                                 $("#result").show().delay(200).addClass("in").fadeOut(3500);
-                                $('#yomi_tokens').val('10');
+                                $('#yomi_tokens').val('');
                             },
                             error: function(response) {
                                 alert("Failed")
