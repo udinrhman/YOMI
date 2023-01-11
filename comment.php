@@ -11,7 +11,7 @@ if(isset($_POST['Comment']) && $_POST['Comment']=="Submit")
 {
     $id = $_POST['id'];
     $username = $_POST['username'];
-    $comment = $_POST['comment'];
+    $comment = addslashes($_POST['comment']);
     date_default_timezone_set("Asia/Kuala_Lumpur");
     
     $query = "INSERT INTO comments (mangaln_id, username, user_comment, comment_date) VALUES ('".$id."','".$username."','".$comment."',CURRENT_TIMESTAMP)";

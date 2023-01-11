@@ -12,24 +12,26 @@ if (isset($_POST['keyword'])) {
     $user = $_POST['user'];
     if (!empty($keyword)) { //if keyword is inserted
         $query = "SELECT order_num FROM orders WHERE (order_num LIKE '%" . $keyword . "%' OR title LIKE '%" . $keyword . "%' OR alternative_title LIKE '%" . $keyword . "%') AND username = '" . $user . "' ORDER BY order_date DESC"; //have to add FULLTEXT index in sql - ALTER TABLE table_name ADD FULLTEXT index_name(column1, column2)
-        $result = mysqli_query($link, $query);
-        while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+        $resultorder = mysqli_query($link, $query);
+        if (mysqli_num_rows($resultorder) == 0) {
+?>
+            <div class="no-result">
+                <img src="image/yomiLogo3.png">
+            </div>
+            <h5 style="color:#c0c0c0;text-align:center;margin-bottom: 17%;">No Result</h5>
+        <?php }$currentOrderNum = false;
+        while ($row = mysqli_fetch_array($resultorder, MYSQLI_BOTH)) {
+            if($currentOrderNum == $row['order_num']){
+                continue;
+            }
             $query2 = "SELECT * FROM orders WHERE order_num = '" . $row['order_num'] . "' AND username = '" . $user . "' ORDER BY order_date DESC"; //have to add FULLTEXT index in sql - ALTER TABLE table_name ADD FULLTEXT index_name(column1, column2)
             $result2 = mysqli_query($link, $query2);
 
             $query3 = "SELECT order_num FROM orders WHERE order_num = '" . $row['order_num'] . "' AND username = '" . $user . "' ORDER BY order_date DESC";
             $result3 = mysqli_query($link, $query3);
-?>
+            
+        ?>
             <table id="myOrders" class="table table-borderless">
-                <?php
-                if (mysqli_num_rows($result2) == 0) {
-                ?>
-                    <div class="no-result">
-                        <img src="image/yomiLogo3.png">
-                    </div>
-                    <h5 style="color:#c0c0c0;text-align:center;margin-bottom: 17%;">No Result</h5>
-                <?php
-                } ?>
                 <tbody>
                     <?php
                     $currentDate = false;
@@ -145,7 +147,9 @@ if (isset($_POST['keyword'])) {
                             $x = $x + 1;
                         }
                     }
+                    $currentOrderNum = $row['order_num'];
                 }
+
                 ?>
                 </tbody>
             </table>

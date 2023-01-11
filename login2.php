@@ -27,11 +27,11 @@
         <div class="container-fluid">
             <!-- LOGO -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"> <a class="nav-link" href="#">HOME</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#">MANGA & LN</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#">GENRE</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#">NEWS</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#">DONATE</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="homepage.php">HOME</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="mangaln.php">MANGA & LN</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="genre.php">GENRE</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="news.php">NEWS</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="donate.php">DONATE</a> </li>
             </ul>
             <form action="GuestSearch.php" method="POST" class="form-inline my-2 my-lg-0">
                 <div class="searchNav">

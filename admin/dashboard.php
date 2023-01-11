@@ -201,7 +201,7 @@ if (isset($_SESSION["username"])) {
                                                         <td colspan="5"></td>
                                                     </tr>
                                                     <tr style="background-color:#000000">
-                                                        <th colspan="2" style="text-align:left;"><img src="../<?php echo $rowUser['user_image'] ?>" class="rounded-circle" width="37" height="37" style="margin-top:2px;object-fit:cover;">&nbsp&nbsp&nbsp<?php echo $row2['username'] ?></th>
+                                                        <th colspan="2" style="text-align:left;"><a href="dynamicProfile.php?ID=<?php echo $rowUser['username'] ?>"><img src="../<?php echo $rowUser['user_image'] ?>" class="rounded-circle" width="37" height="37" style="margin-top:2px;object-fit:cover;">&nbsp&nbsp&nbsp<?php echo $row2['username'] ?></a></th>
                                                         <th colspan="3" style="text-align:right;padding-top:20px"><?php echo strtoupper(date("j M Y h:i A", strtotime($row2['order_date']))) ?></th>
                                                     </tr>
 

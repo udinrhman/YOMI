@@ -354,7 +354,6 @@ if (isset($_SESSION["username"])) {
 <?php
 
 } else {
-?>
-<?php
+    header("Location:login.php");
 }
 ?>

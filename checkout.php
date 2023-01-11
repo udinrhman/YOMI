@@ -999,7 +999,7 @@ if (isset($_SESSION["username"])) {
                         var phoneNumber_value = $("#addphoneNumber").val();
                         var street_value = $("#addstreet").val();
                         var town_city = $("#addtown_city").val();
-                        var postcode_value = $("add#postcode").val();
+                        var postcode_value = $("#addpostcode").val();
                         if (!fullname_value.trim().length || !phoneNumber_value.trim().length || !street_value.trim().length || !town_city.trim().length || !postcode_value.trim().length) { //check if the value insert contain value or not
                             $('button.saveAddress').prop('disabled', true);
                         } else {
@@ -1026,7 +1026,7 @@ if (isset($_SESSION["username"])) {
                     });
 
                 });
-            </script>+
+            </script>
 
             <script type="text/javascript">
                 $(document).ready(function() {

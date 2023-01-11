@@ -674,7 +674,7 @@ if (isset($_SESSION["username"])) {
                                             <input type="hidden" name="mangaln_id" value="<?php echo $row["mangaln_id"] ?>">
                                             <div class="modal-footer">
                                                 <span class="btn btn-secondary reset" onClick="resetFields()">RESET</span>
-                                                <button type="submit" name="updateProduct" value="Submit" class="btn btn-primary addProduct">UPDATE</button>
+                                                <button type="submit" name="updateProduct" value="Submit" class="btn btn-primary updateProduct">UPDATE</button>
                                             </div>
                                         </form>
                                     </div>
@@ -969,9 +969,9 @@ if (isset($_SESSION["username"])) {
                                     var synopsis = $("#synopsis").val();
                                     var admin_review = $("#admin_review").val();
                                     if (!title.trim().length || !alternative_title.trim().length || !author.trim().length || !total_volume.trim().length || !release_year.trim().length || !price.trim().length || !synopsis.trim().length || !admin_review.trim().length) { //check if the value insert contain value or not
-                                        $('button.addProduct').prop('disabled', true); //disable button
+                                        $('button.updateProduct').prop('disabled', true); //disable button
                                     } else {
-                                        $('button.addProduct').prop('disabled', false);
+                                        $('button.updateProduct').prop('disabled', false);
                                     }
                                 });
 

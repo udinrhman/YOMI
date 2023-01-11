@@ -12,7 +12,7 @@ if(isset($_POST['Reply']) && $_POST['Reply']=="Submit")
     $id = $_POST['id'];
     $parent = $_POST['parent'];
     $username = $_POST['username'];
-    $reply = $_POST['reply'];
+    $reply = addslashes($_POST['reply']);
     $replyid = $_POST['replyid'];
     date_default_timezone_set("Asia/Kuala_Lumpur");
 

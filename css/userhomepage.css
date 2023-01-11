@@ -572,8 +572,11 @@ nav .navbar-nav li a:hover {
 
 .error.popover {
 	background: #fd7770 !important;
-	width:250px;
 	padding: 5px;
+}
+.error .popover-body{
+	color:#181818 !important; 
+	width:fit-content;
 }
 
 .error.popover .arrow:after {
@@ -1699,7 +1702,7 @@ table {
 }
 
 .avatarLink {
-	background-color: #fff;
+	background-color: #181818;
 	display: block !important;
 	float: left;
 	margin: -90px 10px 0 40px;
@@ -1710,7 +1713,7 @@ table {
 }
 
 .profilePic {
-	border: 2px solid #fff;
+	border: 2px solid #181818;
 	border-radius: 100%;
 	box-sizing: border-box;
 	color: #fff;

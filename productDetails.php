@@ -423,12 +423,12 @@ if (isset($_SESSION["username"])) {
                                                                     <?php
                                                                     }
                                                                     ?>
-                                                                    <br><span style="display:inline-block;padding-bottom:5px;margin-right:10px;color:#F5F5F5"><?php echo $coms['user_comment']; ?></span>
+                                                                    <br><span style="display:inline-block;padding-bottom:5px;margin-right:10px;color:#F5F5F5;text-align:justify"><?php echo $coms['user_comment']; ?></span>
                                                                     <div class="reply" id="Reply<?php echo "$i" ?>" data-toggle="collapse" role="button" data-target="#reply<?php echo "$i" ?>">Reply</div>
 
                                                                     <form action=" reply.php" method="POST">
                                                                         <div id="reply<?php echo "$i" ?>" class="form-group collapse">
-                                                                            <textarea name="reply" id="replyy" class="form-control" rows="2" placeholder="Reply" maxlength="300" required></textarea>
+                                                                            <textarea name="reply" id="replyy" class="form-control" rows="2" placeholder="Reply" maxlength="500" required></textarea>
                                                                             <input type="hidden" name="replyid" value="Reply<?php echo "$i" ?>">
                                                                             <input type="hidden" name="username" value="<?php echo $_SESSION["username"] ?>">
                                                                             <input type="hidden" name="id" value="<?php echo $row["mangaln_id"] ?>">
@@ -486,7 +486,7 @@ if (isset($_SESSION["username"])) {
                                                                                 //if replies belongs to current user OR admin
                                                                                 {
                                                                                 ?>
-                                                                                    <button class="btn dlcomment" data-toggle="modal" data-target="#DeleteReplyModal<?php echo $reps['reply_id']; ?>">Delete</button>
+                                                                                    <button class="btn dlcomment" style="padding-bottom:0px;padding-top:0px;" data-toggle="modal" data-target="#DeleteReplyModal<?php echo $reps['reply_id']; ?>">Delete</button>
                                                                                 <?php
                                                                                 }
                                                                                 ?>
@@ -510,7 +510,7 @@ if (isset($_SESSION["username"])) {
 
                                             <form action="comment.php" method="POST">
                                                 <div class="form-group" style="margin-top: 10px;">
-                                                    <textarea name="comment" id="comment" class="form-control" rows="2" placeholder="Comment" required></textarea>
+                                                    <textarea name="comment" id="comment" class="form-control" rows="2" placeholder="Comment" maxlength="500" required></textarea>
                                                 </div>
                                                 <input type="hidden" name="username" value="<?php echo $_SESSION["username"] ?>">
                                                 <input type="hidden" name="id" value="<?php echo $row["mangaln_id"] ?>">
@@ -533,7 +533,8 @@ if (isset($_SESSION["username"])) {
                                                     <div class="container-fluid" style="padding:0">
                                                         <div class="boxRow">
                                                             <?php
-                                                            $queryRandomRc = "SELECT * FROM mangaln WHERE LEVENSHTEIN_RATIO(genre, '$row[genre]') > 45 AND mangaln_id != $row[mangaln_id] ORDER BY LEVENSHTEIN(genre, '$row[genre]') LIMIT 5 "; //to retrive random manga
+                                                            $queryRandomRc = "SELECT * FROM mangaln WHERE LEVENSHTEIN_RATIO(genre, '$row[genre]') > 45 AND mangaln_id != $row[mangaln_id]
+                                                            ORDER BY LEVENSHTEIN(genre, '$row[genre]') LIMIT 5 ";
                                                             $resultRC = mysqli_query($link, $queryRandomRc) or die(mysqli_error($link));
                                                             $x   = $resultRC->fetch_all(MYSQLI_ASSOC);
                                                             foreach ($x as $rowRRC) {

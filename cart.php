@@ -193,15 +193,20 @@ if (isset($_SESSION["username"])) {
                                             while ($row7 = mysqli_fetch_array($result7, MYSQLI_BOTH)) {
                                                 ${'subtotal' . $i} = $row6['price'] * $row6['quantity'];
                                                 ${'price' . $i} = $row6['price']; ?>
-                                                <tr style='cursor: pointer;' onclick="window.location='productDetails.php?ID=<?php echo $row6['mangaln_id'] ?>';">
+                                                <tr>
+
                                                     <td class="cartCover" style="width:6%;padding-top:25px">
                                                         <div style="display:flex;justify-content:center;">
-                                                            <img src="upload/<?php echo $row6['cover'] ?>" />
+                                                            <a href="productDetails.php?ID=<?php echo $row6['mangaln_id'] ?>">
+                                                                <img src="upload/<?php echo $row6['cover'] ?>" />
+                                                            </a>
                                                         </div>
                                                     </td>
                                                     <td class="title" style="width:54%;text-align:left">
-                                                        <p style="font-size:30px;font-weight:600;margin-bottom:0;line-height:35px"><?php echo $row6['title'] ?></p>
-                                                        <p><?php echo $row6['alternative_title'] ?></p>
+                                                        <a href="productDetails.php?ID=<?php echo $row6['mangaln_id'] ?>">
+                                                            <p style="font-size:30px;font-weight:600;margin-bottom:0;line-height:35px"><?php echo $row6['title'] ?></p>
+                                                            <p><?php echo $row6['alternative_title'] ?></p>
+                                                        </a>
                                                     </td>
                                                     <td style="width:10%">
                                                         <p style="margin:0;"><?php echo $row6['volume'] ?></p>
