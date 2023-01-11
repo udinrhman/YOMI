@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link href="css/register.css?V=1" type="text/css" rel="stylesheet">
+    <link href="css/register.css" type="text/css" rel="stylesheet">
     <style>
         .popover-title {
             background-color: #73AD21;
@@ -55,7 +55,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"> <a class="nav-link" href="#">LOGIN </a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="login.php">LOGIN </a> </li>
                 </ul>
             </div>
         </div>
@@ -119,8 +119,8 @@
             <?php } ?>
             </div>
             <div class="form-group">
-                <button type="reset" class="btn btn-secondary">Reset</button>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="reset" class="btn btn-secondary">RESET</button>
+                <button type="submit" class="btn btn-primary">SIGN UP</button>
             </div>
             <div class="text-center small"> Already have an account? <a href="login.php">Login here</a></div>
 

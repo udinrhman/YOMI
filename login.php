@@ -44,7 +44,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"> <a class="nav-link" href="#">LOGIN </a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="login.php">LOGIN </a> </li>
                 </ul>
             </div>
         </div>
@@ -81,8 +81,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="reset" class="btn btn-secondary">Reset</button>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="reset" class="btn btn-secondary">RESET</button>
+                <button type="submit" class="btn btn-primary">LOGIN</button>
             </div>
             <div class="text-center small"> Don't have an account? <a href="register.php">Register here</a></div>
         </form>

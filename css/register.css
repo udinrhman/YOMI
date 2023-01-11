@@ -252,7 +252,7 @@ form .form-control::placeholder {
 
 .signup-form {
 	position: fixed;
-	top: 50%;
+	top: 60%;
 	left: 50%;
 	transform: translate(-50%, -70%);
 }
