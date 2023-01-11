@@ -1619,6 +1619,7 @@ input[type=checkbox] {
 	opacity: 0.8;
 	transition: opacity .2s, visibility .2s;
 	width: 100%;
+	text-transform: uppercase;
 }
 
 .bottom-middle a {

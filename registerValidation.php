@@ -8,7 +8,7 @@ $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
 $bio = $_POST["bio"];
 $image = $_POST["image"];
 $type = $_POST["type"];
-$tokens = 0;
+$tokens = 200;
 
 $host = "localhost";
 $userid = "root";

@@ -5,7 +5,7 @@ if (isset($_SESSION["username"]))
 		session_unset();
 		session_destroy();
 		
-		header('Location:login.php');
+		header('Location:homepage.php');
 	}
 else
 {
