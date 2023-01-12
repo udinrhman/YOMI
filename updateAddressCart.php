@@ -8,7 +8,7 @@ $database = "yomi";
 $link = mysqli_connect($host, $userid, $pass, $database);
 
 if (isset($_POST['editAddress']) && $_POST['editAddress'] == "Submit") {
-    $fullname = $_POST['fullname'];
+    $fullname = addslashes($_POST['fullname']);
     $phoneNumber = $_POST['phoneNumber'];
     $street = $_POST['street'];
     $floor_unit = $_POST['floor_unit'];
