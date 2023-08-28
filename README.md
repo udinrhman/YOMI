@@ -2,9 +2,13 @@
 Final Year Project - Degree
 
 1.Paste 'YOMI' folder in C:\wamp64\www folder.
+
 2.RUN Wampserver64
+
 3.Enter http://localhost/phpmyadmin/ on browser
+
 4.Create yomi database.
+
 5.import yomi.sql to yomi database.
 
 
